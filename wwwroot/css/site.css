@@ -1,0 +1,38 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+    width: 100%;
+    margin-bottom: 60px;
+    background-image: linear-gradient(to bottom right, white, #0097e6);
+    /**background-color:#0097e6;**/
+}
+footer {
+    background-color: #ffeaa7;
+}
+
+.Create_bt {
+    color: #0097e6;
+}
+
+.Funtion_bt {
+    color:white;
+}
+
+.navbar-brand {
+    font-size:xx-large;
+}
+
+
