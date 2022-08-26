@@ -58,6 +58,8 @@ namespace SurfsUp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("BoardId,BoardName,Lenght,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
         {
+            //ModelState.Remove("Equipment");
+
             if (ModelState.IsValid)
             {
                 _context.Add(board);

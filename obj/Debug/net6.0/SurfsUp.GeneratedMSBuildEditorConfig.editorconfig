@@ -8,61 +8,61 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SurfsUp
 build_property.RootNamespace = SurfsUp
-build_property.ProjectDir = C:\Users\msoen\Desktop\Øvelser\SurfsUp-Prøve\SurfsUp\
+build_property.ProjectDir = D:\Bjarke\GitBash\hjemmeprojekter\SurfsUp\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = C:\Users\msoen\Desktop\Øvelser\SurfsUp-Prøve\SurfsUp
+build_property.MSBuildProjectDirectory = D:\Bjarke\GitBash\hjemmeprojekter\SurfsUp
 build_property._RazorSourceGeneratorDebug = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Boards/Create.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Boards/Create.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXENyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Boards/Delete.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Boards/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Boards/Details.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Boards/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXERldGFpbHMuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Boards/Edit.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Boards/Edit.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEVkaXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Boards/Index.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Boards/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQm9hcmRzXEluZGV4LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Home/Board.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Home/Board.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxCb2FyZC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Home/Index.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Home/Privacy.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Shared/Error.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Shared/Error.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Shared/_ValidationScriptsPartial.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Shared/_ValidationScriptsPartial.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/_ViewImports.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/_ViewImports.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/_ViewStart.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/_ViewStart.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[C:/Users/msoen/Desktop/Øvelser/SurfsUp-Prøve/SurfsUp/Views/Shared/_Layout.cshtml]
+[D:/Bjarke/GitBash/hjemmeprojekter/SurfsUp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = b-ngq14229vx
