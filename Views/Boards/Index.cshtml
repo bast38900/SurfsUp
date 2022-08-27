@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.BoardName)
             </th>
             <th>
-                
+                @Html.DisplayNameFor(model => model.Picture)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Lenght)
@@ -47,10 +47,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.BoardName)
-
             </td>
             <td>
-                <img src="~/Images/TheMinilog.jpg" width="200px" height="200px">
+                <img src="@Url.Content(item.Picture)" height="300" width="150"/>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Lenght)
