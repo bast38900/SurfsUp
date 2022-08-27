@@ -145,13 +145,122 @@ namespace SurfsUp.Models
 
                         Equipment = "",
 
-                    }
+                    },
+
+
+					new Board
+
+					{
+
+						BoardName = "The Bomb",
+
+						Lenght = 5.5,
+
+						Width = 21,
+
+						Thickness = 2.5,
+
+						Volume = 33.7,
+
+						Type = "Shortboard",
+
+						Price = 645M,
+
+						Equipment = "",
+
+					},
+
+					new Board
+
+					{
+
+						BoardName = "Walden Magic",
+
+						Lenght = 9.6,
+
+						Width = 19.4,
+
+						Thickness = 3,
+
+						Volume = 80,
+
+						Type = "Longboard",
+
+						Price = 1025M,
+
+						Equipment = "",
+
+					},
+
+					new Board
+
+					{
+
+						BoardName = "Naish One",
+
+						Lenght = 12.6,
+
+						Width = 30,
+
+						Thickness = 6,
+
+						Volume = 301,
+
+						Type = "SUP",
+
+						Price = 854M,
+
+						Equipment = "Paddle",
+
+					},
+
+					new Board
+
+					{
+
+						BoardName = "Six Tourer",
+
+						Lenght = 11.6,
+
+						Width = 32,
+
+						Thickness = 6,
+
+						Volume = 270,
+
+						Type = "SUP",
+
+						Price = 611M,
+
+						Equipment = "Fin, Paddle, Pump, Leash",
+
+					},
+
+					new Board
+
+					{
+
+						BoardName = "Naish Maliko",
+
+						Lenght = 14,
+
+						Width = 25,
+
+						Thickness = 6,
+
+						Volume = 330,
+
+						Type = "SUP",
+
+						Price = 1304M,
+
+						Equipment = "Fin, Paddle, Pump, Leash",
+
+					}
 
 
 
-
-
-                );
+				);
 
                 context.SaveChanges();
             }
