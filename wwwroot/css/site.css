@@ -27,7 +27,6 @@ footer {
     font-size:xx-large;
 }
 
-<<<<<<< HEAD
 :root {
     --main-color: #ffeaa7;
 }
@@ -175,24 +174,4 @@ footer {
         margin-bottom: 30px;
     }
 }
-
-
-
-
-
-
-=======
-.table {
-    overflow: auto;
-    height: 100px;
-}
-
-    .table thead th {
-        position: sticky;
-        top: 0;
-        z-index: 1;
-        background-color: #ffeaa7;
-    }
-
->>>>>>> main
 
