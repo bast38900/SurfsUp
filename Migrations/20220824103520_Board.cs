@@ -15,7 +15,7 @@ namespace SurfsUp.Migrations
                 {
                     BoardId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BoardName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Lenght = table.Column<double>(type: "float", nullable: false),
+                    Length = table.Column<double>(type: "float", nullable: false),
                     Width = table.Column<double>(type: "float", nullable: false),
                     Thickness = table.Column<double>(type: "float", nullable: false),
                     Volume = table.Column<double>(type: "float", nullable: false),

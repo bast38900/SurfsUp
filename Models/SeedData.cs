@@ -45,7 +45,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/N/S/NSP04COFSSURVC604CS_78695.jpg",
 
-                        Lenght = 6,
+                        Length = 6,
 
                         Width = 21,
 
@@ -69,7 +69,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/S/U/SUP1-0HH400_66254.jpg",
 
-                        Lenght = 7.1,
+                        Length = 7.1,
 
                         Width = 21.75,
 
@@ -93,7 +93,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2005210101003_82988.jpg",
 
-                        Lenght = 6.3,
+                        Length = 6.3,
 
                         Width = 21.85,
 
@@ -117,7 +117,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/H/S/HSFF-HG0600-FU1_112977.jpg",
 
-                        Lenght = 5.4,
+                        Length = 5.4,
 
                         Width = 20.75,
 
@@ -141,7 +141,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0607_77330.jpg",
 
-                        Lenght = 9.2,
+                        Length = 9.2,
 
                         Width = 22.8,
 
@@ -165,7 +165,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/H/S/HSFF-HK0602-FCB_112990.jpg",
 
-                        Lenght = 5.5,
+                        Length = 5.5,
 
 						Width = 21,
 
@@ -189,7 +189,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0606_77327.jpg",
 
-                        Lenght = 9.6,
+                        Length = 9.6,
 
 						Width = 19.4,
 
@@ -213,7 +213,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2020210401002_101445.jpg",
 
-                        Lenght = 12.6,
+                        Length = 12.6,
 
 						Width = 30,
 
@@ -237,7 +237,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2020210401001_101437.jpg",
 
-                        Lenght = 11.6,
+                        Length = 11.6,
 
 						Width = 32,
 
@@ -261,7 +261,7 @@ namespace SurfsUp.Models
 
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/G/L/GLPRO126S-21_102222.jpg",
 
-                        Lenght = 14,
+                        Length = 14,
 
 						Width = 25,
 

@@ -17,7 +17,7 @@ namespace SurfsUp.Models
             set { picture = value ?? ""; }
         }
 
-        public double Lenght { get; set; }
+        public double Length { get; set; }
 
         public double Width { get; set; }
 
