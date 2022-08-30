@@ -43,7 +43,7 @@ namespace SurfsUp.Models
 
                         BoardName = "The Minilog",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/editor/1473847920_3.png?1527601338",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/S/NSP04COFSSURVC604CS_78695.jpg",
 
                         Lenght = 6,
 
@@ -67,7 +67,7 @@ namespace SurfsUp.Models
 
                         BoardName = "The Wide Glider",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/editor/bildschirmfoto-2021-11-06-um-22-46-18.png?1636904122",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/S/U/SUP1-0HH400_66254.jpg",
 
                         Lenght = 7.1,
 
@@ -91,7 +91,7 @@ namespace SurfsUp.Models
 
                         BoardName = "The Golden Ratio",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/editor/1473853259_2.png?1527523131",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2005210101003_82988.jpg",
 
                         Lenght = 6.3,
 
@@ -115,7 +115,7 @@ namespace SurfsUp.Models
 
                         BoardName = "Mahi Mahi",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/editor/_1942718.jpg?1525859552",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/H/S/HSFF-HG0600-FU1_112977.jpg",
 
                         Lenght = 5.4,
 
@@ -139,7 +139,7 @@ namespace SurfsUp.Models
 
                         BoardName = "The Emerald Glider",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/published/_1305205.jpg?1527604143",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0607_77330.jpg",
 
                         Lenght = 9.2,
 
@@ -163,7 +163,7 @@ namespace SurfsUp.Models
 
 						BoardName = "The Bomb",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/published/______4601703.jpg?1525862675",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/H/S/HSFF-HK0602-FCB_112990.jpg",
 
                         Lenght = 5.5,
 
@@ -187,7 +187,7 @@ namespace SurfsUp.Models
 
 						BoardName = "Walden Magic",
 
-                        Picture = "https://www.light-surfboards.com/uploads/5/7/3/0/57306051/published/_1287054.jpg?1527604108",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0606_77327.jpg",
 
                         Lenght = 9.6,
 
@@ -211,7 +211,7 @@ namespace SurfsUp.Models
 
 						BoardName = "Naish One",
 
-                        Picture = "https://kite-prod.b-cdn.net/16121-home_default/jobe-duna-adventure-11-6-2022-inflatable-sup-package.jpg",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2020210401002_101445.jpg",
 
                         Lenght = 12.6,
 
@@ -235,7 +235,7 @@ namespace SurfsUp.Models
 
 						BoardName = "Six Tourer",
 
-                        Picture = "https://kite-prod.b-cdn.net/16394-home_default/stx-tourer-11-6-2022-inflatable-sup-package.jpg",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2020210401001_101437.jpg",
 
                         Lenght = 11.6,
 
@@ -259,7 +259,7 @@ namespace SurfsUp.Models
 
 						BoardName = "Naish Maliko",
 
-                        Picture = "https://kite-prod.b-cdn.net/13639-home_default/jobe-mira-10-0-2022-inflatable-sup-package.jpg",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/G/L/GLPRO126S-21_102222.jpg",
 
                         Lenght = 14,
 
