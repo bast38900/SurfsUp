@@ -10,6 +10,13 @@ namespace SurfsUp.Models
         [Required]
         public string BoardName { get; set; }
 
+        private string? picture;
+        public string? Picture
+        {
+            get { return picture; }
+            set { picture = value ?? ""; }
+        }
+
         public double Lenght { get; set; }
 
         public double Width { get; set; }
@@ -36,7 +43,6 @@ namespace SurfsUp.Models
             get { return equipment; }
             set { equipment = value ?? ""; }
         }
-
 
     }
 }
