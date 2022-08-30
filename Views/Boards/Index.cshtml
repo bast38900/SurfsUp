@@ -9,6 +9,7 @@
 <p>
     <a class="Create_bt" asp-action="Create">Create New</a>
 </p>
+<<<<<<< HEAD
     <div class="container">
         <div class="row">
 @foreach (var item in Model)
@@ -33,6 +34,77 @@
                     </div>
                 </div>
             </div>
+=======
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BoardName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Picture)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Lenght)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Width)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Thickness)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volume)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Equipment)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BoardName)
+            </td>
+            <td>
+                <img src="@Url.Content(item.Picture)" height="300" width="150"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Lenght)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Width)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Thickness)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Volume)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Equipment)
+            </td>
+            <td>
+                <a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a> |
+                <a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a> |
+                <a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a>
+            </td>
+        </tr>
+>>>>>>> main
 }
         </div>
     </div>
