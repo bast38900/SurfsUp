@@ -9,76 +9,30 @@
 <p>
     <a class="Create_bt" asp-action="Create">Create New</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.BoardName)
-            </th>
-            <th>
-                
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Lenght)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Width)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Thickness)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Volume)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Type)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Equipment)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.BoardName)
-
-            </td>
-            <td>
-                <img src="~/Images/TheMinilog.jpg" width="200px" height="200px">
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lenght)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Width)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Thickness)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Volume)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Type)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Equipment)
-            </td>
-            <td>
-                <a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a> |
-                <a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a> |
-                <a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a>
-            </td>
-        </tr>
+    <div class="container">
+        <div class="row">
+@foreach (var item in Model)
+{
+            <div class="col-3">
+                <div class="product-grid">
+                    <div class="product-image">
+                        <a href="#" class="image">
+                            <img class="pic-1" src=~/Images/TheMinilog.jpg>
+                        </a>
+                        <span class="product-sale-label">@Html.DisplayFor(modelItem => item.BoardName)</span>
+                        <ul class="social">
+                            <li><a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a></li>
+                            <li><a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a></li>
+                            <li><a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a></li>
+                        </ul>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category"><a href="#">@Html.DisplayNameFor(model => model.Type)</a></span>
+                        <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
+                        <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
+                    </div>
+                </div>
+            </div>
 }
-    </tbody>
-</table>
+        </div>
+    </div>

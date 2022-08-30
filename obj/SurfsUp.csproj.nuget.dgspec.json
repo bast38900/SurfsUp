@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\msoen\\Desktop\\Øvelser\\SurfsUp-Prøve\\SurfsUp\\SurfsUp.csproj": {}
+    "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\msoen\\Desktop\\Øvelser\\SurfsUp-Prøve\\SurfsUp\\SurfsUp.csproj": {
+    "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\msoen\\Desktop\\Øvelser\\SurfsUp-Prøve\\SurfsUp\\SurfsUp.csproj",
+        "projectUniqueName": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj",
         "projectName": "SurfsUp",
-        "projectPath": "C:\\Users\\msoen\\Desktop\\Øvelser\\SurfsUp-Prøve\\SurfsUp\\SurfsUp.csproj",
+        "projectPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj",
         "packagesPath": "C:\\Users\\msoen\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\msoen\\Desktop\\Øvelser\\SurfsUp-Prøve\\SurfsUp\\obj\\",
+        "outputPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\msoen\\AppData\\Roaming\\NuGet\\NuGet.Config",
