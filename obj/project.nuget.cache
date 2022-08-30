@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "Ncw5gn60N4jqqMfreTFjyoy/XT9R2djZ2fFlYzc58ULfVpXPI2ISOtyCQ+OU4Or3u45hXPYC6v7doFAStszB7g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj",
+=======
   "dgSpecHash": "G4jiZLW96Q4qQtDrVBazYvJlhmzaCOla5t5Oh5kAQ5FN85QU7tsoW+KWp69BkDxytUptRjorPq+9hnwe+YqwBQ==",
   "success": true,
   "projectFilePath": "D:\\Bjarke\\GitBash\\hjemmeprojekter\\SurfsUp\\SurfsUp.csproj",
+>>>>>>> main
   "expectedPackageFiles": [
     "C:\\Users\\Bjarke\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Bjarke\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

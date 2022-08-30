@@ -9470,11 +9470,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
+      "projectUniqueName": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj",
+      "projectName": "SurfsUp",
+      "projectPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\SurfsUp.csproj",
+      "packagesPath": "C:\\Users\\msoen\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUp\\obj\\",
+=======
       "projectUniqueName": "D:\\Bjarke\\GitBash\\hjemmeprojekter\\SurfsUp\\SurfsUp.csproj",
       "projectName": "SurfsUp",
       "projectPath": "D:\\Bjarke\\GitBash\\hjemmeprojekter\\SurfsUp\\SurfsUp.csproj",
       "packagesPath": "C:\\Users\\Bjarke\\.nuget\\packages\\",
       "outputPath": "D:\\Bjarke\\GitBash\\hjemmeprojekter\\SurfsUp\\obj\\",
+>>>>>>> main
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Bjarke\\AppData\\Roaming\\NuGet\\NuGet.Config",
