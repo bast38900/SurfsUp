@@ -85,7 +85,7 @@ namespace SurfsUp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, [Bind("BoardId,BoardName,Lenght,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Edit(Guid id, [Bind("BoardId,BoardName,Picture,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
         {
             if (id != board.BoardId)
             {
