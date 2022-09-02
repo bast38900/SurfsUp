@@ -10,27 +10,26 @@
 
     <div class="product-list">
             <div class="row">
-                @foreach (var item in Model)
-                {
-                <div class="col-auto">
-                    <div class="product-grid">
-                        <div class="product-image">
-                            <a href="#" class="image">
-                                <img class="board-image" src="@Url.Content(item.Picture)"/>
-                            </a>
-                            <span class="product-sale-label">@Html.DisplayFor(modelItem => item.BoardName)</span>
-                            <ul class="social">
-                                <li><a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a></li>
-                                <li><a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a></li>
-                                <li><a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a></li>
-                            </ul>
-                        </div>
-                        <div class="product-content">
-                            <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
-                            <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
+                @foreach (var item in Model) {
+                    <div class="col-auto">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a href="#" class="image">
+                                    <img class="board-image" src="@Url.Content(item.Picture)"/>
+                                </a>
+                                <span class="product-sale-label">@Html.DisplayFor(modelItem => item.BoardName)</span>
+                                <ul class="social">
+                                    <li><a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a></li>
+                                    <li><a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a></li>
+                                    <li><a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a></li>
+                                </ul>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
+                                <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 }
             </div>
     </div>
