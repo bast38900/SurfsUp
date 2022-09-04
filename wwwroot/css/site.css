@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+
+
 /* ========= GENERAL ========= */
 
 :root {
-    --main-color: #ffeaa7;
+    --main-color: #f8d99b;
 }
 
 html {
@@ -19,7 +22,14 @@ body {
 }
 
 footer {
-    background-color: #ffeaa7;
+    font-family: 'Indie Flower', cursive;
+    background-color: var(--main-color);
+}
+
+footer p {
+    margin-top: 15px;
+    color: #000;
+    font-size: 18px;
 }
 
 /* ========= Buttons ========= */
@@ -34,11 +44,59 @@ footer {
 
 /* ========= NAVBAR ========= */
 
+nav {
+    background-color: var(--main-color);
+}
+
+.navbar-nav {
+    margin: 20px 0 20px 0;
+}
+
 .navbar-brand {
-    font-size:xx-large;
+    font-family: 'Indie Flower', cursive;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.nav-link {
+    font-family: 'Indie Flower', cursive;
+    font-size: 28px;
+    margin: 0 10px 0 10px;
 }
 
 /* ========= PRODUCT ========= */
+
+.page-title {
+    font-family: 'Indie Flower', cursive;
+    text-align: center;
+    margin: 50px 0 50px 0;
+}
+
+    .page-title h1 {
+        font-weight: 700;
+    }
+
+
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.searchField {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchInput {
+    display: flex;
+    flex-direction: row;
+}
+
+.searchInput button {
+    margin-left: 5px;
+}
+
 
 .product-list {
     margin: 20px 0 30px 0;
