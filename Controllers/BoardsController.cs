@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
@@ -15,13 +16,32 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index( string sortOrder, string searchString)
         {
+
+            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+            var boards = from b in _context.Board select b;
+            
+            if(!String.IsNullOrEmpty(sortOrder))
+            {
+                boards = boards.Where(b => b.BoardName.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    boards = boards.OrderByDescending(b => b.BoardName);
+                    break;
+                default:
+                    boards = boards.OrderBy(b => b.BoardName);
+                    break;
+            }
+
               return _context.Board != null ? 
                           View(await _context.Board.ToListAsync()) :
                           Problem("Entity set 'SurfsUpContext.Board'  is null.");
         }
-
         // GET: Boards/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
