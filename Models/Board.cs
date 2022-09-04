@@ -2,6 +2,11 @@
 
 namespace SurfsUp.Models
 {
+    public enum BoardState
+    {
+        Available, Rented
+    }
+
     public class Board
     {
         public Guid BoardId { get; set; }
