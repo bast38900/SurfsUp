@@ -20,13 +20,13 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="test">Home</a>
+                            <a class="nav-link" asp-area="" asp-controller="Rental" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="test">Rent</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="test">Surfboards</a>
+                            <a class="nav-link" asp-area="" asp-controller="Boards" asp-action="Index">Surfboards</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-area="" asp-controller="Home" asp-action="test">Support</a>
@@ -37,11 +37,9 @@
             </div>
         </nav>
     </header>
-    <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
-    </div>
 
     <footer class="footer text-muted">
         <div class="container">

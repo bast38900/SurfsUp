@@ -64,8 +64,35 @@ nav {
     margin: 0 10px 0 10px;
 }
 
-/* ========= PRODUCT ========= */
+/* ========= SHOP ========= */
 
+.shop {
+    margin: 40px 0 40px 0;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: center;
+}
+
+    .shop-header {
+        margin: 50px 0 0 0;
+        font-family: 'Indie Flower', cursive;
+        font-weight: 700;
+    }
+
+.shop .card {
+    margin: 10px 0 10px 0;
+    border-width: 0;
+}
+
+.pagination-buttons {
+    margin: 10px 0 0 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+/* ========= PRODUCT ========= */
 .page-title {
     font-family: 'Indie Flower', cursive;
     text-align: center;

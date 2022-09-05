@@ -16,7 +16,7 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index( string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string sortOrder, string searchString)
         {
 
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
