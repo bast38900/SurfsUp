@@ -14,7 +14,12 @@ namespace SurfsUp.Controllers
             _context = context;
         }
 
-        public async Task<IActionResult> Index(
+        public IActionResult Index()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Rent(
             string sortOrder,
             string currentFilter,
             string searchString,

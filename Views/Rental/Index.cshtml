@@ -1,44 +1,7 @@
-﻿@model PaginatedList<SurfsUp.Models.Board>
-
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
 @{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
 }
 
-<h1 class="shop-header text-center">Available boards for rent</h1>
-<div class="shop">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-            @foreach (var item in Model)
-            {
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="@Url.Content(item.Picture)" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.BoardName)</h4>
-                        <h6>Type: @Html.DisplayFor(modelItem => item.Type)</h6>
-                        <p class="card-text">Price: @Html.DisplayFor(modelItem => item.Price)</p>
-                        <a href="#" class="btn btn-secondary">Rent now</a>
-                    </div>
-                </div>
-            </div>
-            }
-        </div>
-        <div class="pagination-buttons">
-            <a asp-action="Index"
-                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                asp-route-pageNumber="@(Model.PageIndex - 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="btn btn-light @prevDisabled">
-                Previous
-            </a>
-            <a asp-action="Index"
-                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                asp-route-pageNumber="@(Model.PageIndex + 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="btn btn-secondary ms-2 @nextDisabled">
-                Next
-            </a>
-        </div>
-    </div>
-</div>
+<h1 class="text-center m-5">Our frontpage</h1>
