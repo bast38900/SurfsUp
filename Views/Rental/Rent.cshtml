@@ -29,6 +29,9 @@
                         <h4 class="card-title">@Html.DisplayFor(modelItem => item.BoardName)</h4>
                         <h6>Type: @Html.DisplayFor(modelItem => item.Type)</h6>
                         <p class="card-text">Price: @Html.DisplayFor(modelItem => item.Price)</p>
+                        <ul class="card">
+                            <li><a class="btn-primary" asp-action="Details" asp-route-id="@item.BoardId">Details</a></li>
+                        </ul>
                         <a href="#" class="btn btn-secondary">Rent now</a>
                     </div>
                 </div>

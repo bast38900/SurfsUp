@@ -19,6 +19,7 @@ namespace SurfsUp.Controllers
             return View();
         }
 
+        // GET: Boards
         public async Task<IActionResult> Rent(
             string sortOrder,
             string currentFilter,
@@ -46,6 +47,24 @@ namespace SurfsUp.Controllers
 
             int pageSize = 4;
             return View(await PaginatedList<Board>.CreateAsync(boards.AsNoTracking(), pageNumber ?? 1, pageSize));
+        }
+
+        // GET: Boards/Details/5
+        public async Task<IActionResult> Details(Guid? id)
+        {
+            if (id == null || _context.Board == null)
+            {
+                return NotFound();
+            }
+
+            var board = await _context.Board
+                .FirstOrDefaultAsync(m => m.BoardId == id);
+            if (board == null)
+            {
+                return NotFound();
+            }
+
+            return View(board);
         }
     }
 }
