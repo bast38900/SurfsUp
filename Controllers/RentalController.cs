@@ -26,6 +26,13 @@ namespace SurfsUp.Controllers
             int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
+            
+            var boards = from b in _context.Board select b;
+            
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                boards = boards.Where(s => s.BoardName!.Contains(searchString));
+            }
 
             if (searchString != null)
             {
@@ -36,7 +43,6 @@ namespace SurfsUp.Controllers
                 searchString = currentFilter;
             }
 
-            var boards = from b in _context.Board select b;
 
             int pageSize = 4;
             return View(await PaginatedList<Board>.CreateAsync(boards.AsNoTracking(), pageNumber ?? 1, pageSize));
