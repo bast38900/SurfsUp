@@ -6,6 +6,17 @@
 }
 
 <h1 class="shop-header text-center">Available boards for rent</h1>
+<div class="actions mt-3">
+    <div class="searchField">
+        <form asp-action="Rent" method="get">
+            <div class="searchInput">
+                <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..."/>
+                <button type="submit" class="btn btn-dark">Search</button>
+            </div>
+        </form>
+            <a asp-action="Rent" class="ms-3 mt-2">Back to Full List</a>
+    </div>
+</div>
 <div class="shop">
         <div class="container">
             <div class="row justify-content-center align-items-center">
