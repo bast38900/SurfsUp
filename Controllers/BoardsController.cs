@@ -16,16 +16,19 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index(string sortOrder, string searchString)
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-
             ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "";
+            ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
             ViewData["CurrentFilter"] = searchString;
-            var boards = from b in _context.Board select b;
-            
-            if(!String.IsNullOrEmpty(sortOrder))
+
+            var boards = from b in _context.Board
+                         select b;
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                boards = boards.Where(b => b.BoardName.Contains(searchString));
+                boards = boards.Where(s => s.BoardName!.Contains(searchString));
             }
 
             switch (sortOrder)
@@ -33,15 +36,24 @@ namespace SurfsUp.Controllers
                 case "name_desc":
                     boards = boards.OrderByDescending(b => b.BoardName);
                     break;
+                case "type_desc":
+                    boards = boards.OrderByDescending(b => b.Type);
+                    break;
+                case "price_desc":
+                    boards = boards.OrderByDescending(b => b.Price);
+                    break;
                 default:
                     boards = boards.OrderBy(b => b.BoardName);
                     break;
             }
 
-              return _context.Board != null ? 
-                          View(await _context.Board.ToListAsync()) :
-                          Problem("Entity set 'SurfsUpContext.Board'  is null.");
+            return View(await boards.ToListAsync());
+
+            //    return _context.Board != null ? 
+            //                 View(await _context.Board.ToListAsync());
+            //                 Problem("Entity set 'SurfsUpContext.Board'  is null.");
         }
+
         // GET: Boards/Details/5
         public async Task<IActionResult> Details(Guid? id)
         {
