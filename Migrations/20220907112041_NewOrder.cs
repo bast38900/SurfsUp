@@ -38,7 +38,7 @@ namespace SurfsUp.Migrations
                     Type = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Equipment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
                 },
                 constraints: table =>
                 {
