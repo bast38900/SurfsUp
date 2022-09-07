@@ -18,8 +18,8 @@ namespace SurfsUp.Controllers
         // GET: Boards
         public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-            ViewData["NameSortParm"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewData["TypeSortParm"] = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "";
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "";
             ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
             ViewData["CurrentFilter"] = searchString;
 
@@ -36,8 +36,14 @@ namespace SurfsUp.Controllers
                 case "name_desc":
                     boards = boards.OrderByDescending(b => b.BoardName);
                     break;
+                case "Type":
+                    boards = boards.OrderBy(b => b.Type);
+                    break;
                 case "type_desc":
                     boards = boards.OrderByDescending(b => b.Type);
+                    break;
+                case "Price":
+                    boards = boards.OrderBy(b => b.Price);
                     break;
                 case "price_desc":
                     boards = boards.OrderByDescending(b => b.Price);
