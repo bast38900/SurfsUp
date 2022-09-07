@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
@@ -15,11 +16,48 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string sortOrder)
         {
-              return _context.Board != null ? 
-                          View(await _context.Board.ToListAsync()) :
-                          Problem("Entity set 'SurfsUpContext.Board'  is null.");
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "";
+            ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewData["CurrentFilter"] = searchString;
+
+            var boards = from b in _context.Board
+                         select b;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                boards = boards.Where(s => s.BoardName!.Contains(searchString));
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    boards = boards.OrderByDescending(b => b.BoardName);
+                    break;
+                case "Type":
+                    boards = boards.OrderBy(b => b.Type);
+                    break;
+                case "type_desc":
+                    boards = boards.OrderByDescending(b => b.Type);
+                    break;
+                case "Price":
+                    boards = boards.OrderBy(b => b.Price);
+                    break;
+                case "price_desc":
+                    boards = boards.OrderByDescending(b => b.Price);
+                    break;
+                default:
+                    boards = boards.OrderBy(b => b.BoardName);
+                    break;
+            }
+
+            return View(await boards.ToListAsync());
+
+            //    return _context.Board != null ? 
+            //                 View(await _context.Board.ToListAsync());
+            //                 Problem("Entity set 'SurfsUpContext.Board'  is null.");
         }
 
         // GET: Boards/Details/5

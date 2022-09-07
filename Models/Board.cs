@@ -7,6 +7,7 @@ namespace SurfsUp.Models
         Available,
         Rented
     }
+
     public class Board
     {
         public Guid BoardId { get; set; }

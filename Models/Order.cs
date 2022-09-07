@@ -35,5 +35,6 @@
                 board.State = BoardState.Rented;
             }
         }
+
     }
 }
