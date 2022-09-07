@@ -4,7 +4,8 @@ namespace SurfsUp.Models
 {
     public enum BoardState
     {
-        Available, Rented
+        Available,
+        Rented
     }
 
     public class Board
@@ -14,6 +15,8 @@ namespace SurfsUp.Models
         [StringLength(255, MinimumLength = 1)]
         [Required]
         public string BoardName { get; set; }
+
+        public BoardState State { get; set; } = BoardState.Available;
 
         private string? picture;
         public string? Picture
@@ -49,5 +52,6 @@ namespace SurfsUp.Models
             set { equipment = value ?? ""; }
         }
 
+        public Order Order { get; set; }
     }
 }
