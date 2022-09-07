@@ -52,6 +52,8 @@ namespace SurfsUp.Models
             set { equipment = value ?? ""; }
         }
 
-        public Order Order { get; set; }
+        public Order? Order { get; set; }
+
+
     }
 }

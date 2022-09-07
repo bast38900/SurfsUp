@@ -58,6 +58,8 @@ namespace SurfsUp.Models
                         Price = 565M,
 
                         Equipment = "",
+
+                        Order = null
                         
                     },
 
@@ -81,7 +83,9 @@ namespace SurfsUp.Models
 
                         Price = 685M,
 
-                        Equipment = "",                        
+                        Equipment = "",
+
+                        Order = null
 
                     },
 
@@ -105,7 +109,9 @@ namespace SurfsUp.Models
 
                         Price = 695M,
 
-                        Equipment = "",                   
+                        Equipment = "",
+
+                        Order = null
 
                     },
 
@@ -129,7 +135,9 @@ namespace SurfsUp.Models
 
                         Price = 645M,
 
-                        Equipment = "",                        
+                        Equipment = "",
+
+                        Order = null
 
                     },
 
@@ -153,7 +161,9 @@ namespace SurfsUp.Models
 
                         Price = 895M,
 
-                        Equipment = "",                        
+                        Equipment = "",
+
+                        Order = null
                     },
 
 
@@ -177,7 +187,9 @@ namespace SurfsUp.Models
 
 						Price = 645M,
 
-						Equipment = "",                        
+						Equipment = "",
+
+                        Order = null
 
                     },
 
@@ -201,7 +213,9 @@ namespace SurfsUp.Models
 
 						Price = 1025M,
 
-						Equipment = "",                        
+						Equipment = "",
+
+                        Order = null
 
                     },
 
@@ -225,7 +239,9 @@ namespace SurfsUp.Models
 
 						Price = 854M,
 
-						Equipment = "Paddle",                       
+						Equipment = "Paddle",
+
+                        Order = null
 
                     },
 
@@ -249,7 +265,9 @@ namespace SurfsUp.Models
 
 						Price = 611M,
 
-						Equipment = "Fin, Paddle, Pump, Leash",                        
+						Equipment = "Fin, Paddle, Pump, Leash",
+                        
+                        Order = null
 
                     },
 
@@ -273,7 +291,9 @@ namespace SurfsUp.Models
 
 						Price = 1304M,
 
-						Equipment = "Fin, Paddle, Pump, Leash",                        
+						Equipment = "Fin, Paddle, Pump, Leash",
+
+                        Order = null
 
                     }
 

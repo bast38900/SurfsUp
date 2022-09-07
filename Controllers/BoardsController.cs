@@ -89,7 +89,7 @@ namespace SurfsUp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BoardId,BoardName,Lenght,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Create([Bind("BoardId,BoardName,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
         {
             //ModelState.Remove("Equipment");
 
