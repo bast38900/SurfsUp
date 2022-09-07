@@ -57,9 +57,7 @@ namespace SurfsUp.Models
 
                         Price = 565M,
 
-                        Equipment = "",
-
-                        Order = null
+                        Equipment = ""
                         
                     },
 
@@ -83,9 +81,7 @@ namespace SurfsUp.Models
 
                         Price = 685M,
 
-                        Equipment = "",
-
-                        Order = null
+                        Equipment = ""
 
                     },
 
@@ -109,9 +105,7 @@ namespace SurfsUp.Models
 
                         Price = 695M,
 
-                        Equipment = "",
-
-                        Order = null
+                        Equipment = ""
 
                     },
 
@@ -135,9 +129,7 @@ namespace SurfsUp.Models
 
                         Price = 645M,
 
-                        Equipment = "",
-
-                        Order = null
+                        Equipment = ""
 
                     },
 
@@ -161,9 +153,7 @@ namespace SurfsUp.Models
 
                         Price = 895M,
 
-                        Equipment = "",
-
-                        Order = null
+                        Equipment = ""
                     },
 
 
@@ -187,9 +177,7 @@ namespace SurfsUp.Models
 
 						Price = 645M,
 
-						Equipment = "",
-
-                        Order = null
+						Equipment = ""
 
                     },
 
@@ -213,9 +201,7 @@ namespace SurfsUp.Models
 
 						Price = 1025M,
 
-						Equipment = "",
-
-                        Order = null
+						Equipment = ""
 
                     },
 
@@ -239,9 +225,7 @@ namespace SurfsUp.Models
 
 						Price = 854M,
 
-						Equipment = "Paddle",
-
-                        Order = null
+						Equipment = "Paddle"
 
                     },
 
@@ -265,9 +249,7 @@ namespace SurfsUp.Models
 
 						Price = 611M,
 
-						Equipment = "Fin, Paddle, Pump, Leash",
-                        
-                        Order = null
+						Equipment = "Fin, Paddle, Pump, Leash"
 
                     },
 
@@ -291,9 +273,7 @@ namespace SurfsUp.Models
 
 						Price = 1304M,
 
-						Equipment = "Fin, Paddle, Pump, Leash",
-
-                        Order = null
+						Equipment = "Fin, Paddle, Pump, Leash"
 
                     }
 

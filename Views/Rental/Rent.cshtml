@@ -1,55 +1,19 @@
-﻿@model PaginatedList<SurfsUp.Models.Board>
+﻿@model SurfsUp.Models.Order;
 
-@{
-    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
-    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+<h1>Rent the board</h1>
+<p>@Url.ActionContext.RouteData.Values["id"]</p>
+<form asp-action="Rent">
+    <div class="mb-3">
+        <label asp-for="DateOfDelivery" class="control-label mb-1"></label>
+        <input asp-for="DateOfDelivery" class="form-control" type="date"  required/>
+    </div>
+
+    <div class="form-group">
+         <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-
-<h1 class="shop-header text-center">Available boards for rent</h1>
-<div class="actions mt-3">
-    <div class="searchField">
-        <form asp-action="Rent" method="get">
-            <div class="searchInput">
-                <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..."/>
-                <button type="submit" class="btn btn-dark">Search</button>
-            </div>
-        </form>
-            <a asp-action="Rent" class="ms-3 mt-2">Back to Full List</a>
-    </div>
-</div>
-<div class="shop">
-        <div class="container">
-            <div class="row justify-content-center align-items-center">
-            @foreach (var item in Model)
-            {
-            <div class="col-md-3">
-                <div class="card">
-                    <img src="@Url.Content(item.Picture)" class="card-img-top">
-                    <div class="card-body">
-                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.BoardName)</h4>
-                        <h6>Type: @Html.DisplayFor(modelItem => item.Type)</h6>
-                        <p class="card-text">Price: @Html.DisplayFor(modelItem => item.Price)</p>
-                        <a href="#" class="btn btn-secondary">Rent now</a>
-                    </div>
-                </div>
-            </div>
-            }
-        </div>
-        <div class="pagination-buttons">
-            <a asp-action="Rent"
-                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                asp-route-pageNumber="@(Model.PageIndex - 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="btn btn-light @prevDisabled">
-                Previous
-            </a>
-            <a asp-action="Rent"
-                asp-route-sortOrder="@ViewData["CurrentSort"]"
-                asp-route-pageNumber="@(Model.PageIndex + 1)"
-                asp-route-currentFilter="@ViewData["CurrentFilter"]"
-                class="btn btn-secondary ms-2 @nextDisabled">
-                Next
-            </a>
-        </div>
-    </div>
-</div>

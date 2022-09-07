@@ -12,8 +12,8 @@ using SurfsUp.Data;
 namespace SurfsUp.Migrations.IdentitySurfsUp
 {
     [DbContext(typeof(IdentitySurfsUpContext))]
-    [Migration("20220907112206_Identity")]
-    partial class Identity
+    [Migration("20220907205406_SurfsUp")]
+    partial class SurfsUp
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

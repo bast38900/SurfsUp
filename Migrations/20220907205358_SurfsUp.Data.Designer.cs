@@ -12,8 +12,8 @@ using SurfsUp.Data;
 namespace SurfsUp.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    [Migration("20220907151305_PhillipFix")]
-    partial class PhillipFix
+    [Migration("20220907205358_SurfsUp.Data")]
+    partial class SurfsUpData
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,9 +41,6 @@ namespace SurfsUp.Migrations
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
-                    b.Property<Guid?>("OrderId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
@@ -69,8 +66,6 @@ namespace SurfsUp.Migrations
 
                     b.HasKey("BoardId");
 
-                    b.HasIndex("OrderId");
-
                     b.ToTable("Board");
                 });
 
@@ -78,6 +73,9 @@ namespace SurfsUp.Migrations
                 {
                     b.Property<Guid>("OrderId")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BoardId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateOfDelivery")
@@ -91,21 +89,18 @@ namespace SurfsUp.Migrations
 
                     b.HasKey("OrderId");
 
+                    b.HasIndex("BoardId");
+
                     b.ToTable("Order");
-                });
-
-            modelBuilder.Entity("SurfsUp.Models.Board", b =>
-                {
-                    b.HasOne("SurfsUp.Models.Order", "Order")
-                        .WithMany("Boards")
-                        .HasForeignKey("OrderId");
-
-                    b.Navigation("Order");
                 });
 
             modelBuilder.Entity("SurfsUp.Models.Order", b =>
                 {
-                    b.Navigation("Boards");
+                    b.HasOne("SurfsUp.Models.Board", "Board")
+                        .WithMany()
+                        .HasForeignKey("BoardId");
+
+                    b.Navigation("Board");
                 });
 #pragma warning restore 612, 618
         }

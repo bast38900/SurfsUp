@@ -41,19 +41,12 @@ namespace SurfsUp.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-
-        /// <summary>
-        /// Removes validation through null coalescing operator -> se set.
-        /// </summary>
         private string? equipment;
         public string? Equipment
         {
             get { return equipment; }
             set { equipment = value ?? ""; }
         }
-
-        public Order? Order { get; set; }
-
 
     }
 }

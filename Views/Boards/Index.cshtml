@@ -50,7 +50,7 @@
                             <div class="product-content">
                                 <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
                                 <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
-                                <p>Status: available</p>
+                                <p>Status: @Html.DisplayFor(modelItem => item.State)</p>
                             </div>
                         </div>
                     </div>
