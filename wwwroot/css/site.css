@@ -266,8 +266,12 @@ nav {
         transition: .3s ease;
     }
 
-@media only screen and (max-width:990px) {
-    .product-grid {
+    .product-grid p {
+        margin: 5px 0 0 0;
+    }
+
+    @media only screen and (max-width:990px) {
+        .product-grid {
         margin-bottom: 30px;
     }
 }
