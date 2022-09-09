@@ -5,24 +5,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SurfsUp.Migrations
 {
-    public partial class NewOrder : Migration
+    public partial class SurfsUpData : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.CreateTable(
-                name: "Order",
-                columns: table => new
-                {
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    DateOfDelivery = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    DateOfSubmission = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Order", x => x.OrderId);
-                });
-
             migrationBuilder.CreateTable(
                 name: "Board",
                 columns: table => new
@@ -37,33 +23,46 @@ namespace SurfsUp.Migrations
                     Volume = table.Column<double>(type: "float", nullable: false),
                     Type = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                     Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    Equipment = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Equipment = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Board", x => x.BoardId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Order",
+                columns: table => new
+                {
+                    OrderId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    DateOfDelivery = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    DateOfSubmission = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    BoardId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    Total = table.Column<decimal>(type: "decimal(18,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Order", x => x.OrderId);
                     table.ForeignKey(
-                        name: "FK_Board_Order_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Order",
-                        principalColumn: "OrderId",
-                        onDelete: ReferentialAction.Cascade);
+                        name: "FK_Order_Board_BoardId",
+                        column: x => x.BoardId,
+                        principalTable: "Board",
+                        principalColumn: "BoardId");
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Board_OrderId",
-                table: "Board",
-                column: "OrderId");
+                name: "IX_Order_BoardId",
+                table: "Order",
+                column: "BoardId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Board");
+                name: "Order");
 
             migrationBuilder.DropTable(
-                name: "Order");
+                name: "Board");
         }
     }
 }

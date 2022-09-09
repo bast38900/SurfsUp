@@ -5,9 +5,11 @@
         public Guid OrderId { get; set; }
         public DateTime DateOfDelivery { get; set; }
         public DateTime DateOfSubmission { get; set; }
-        public ICollection<Board> Boards { get; set; }
+        public Board? Board { get; set; }
+        // public ICollection<Board> Boards { get; set; }
         public decimal Total { get; set; }
 
+        /*    
         public void Add(Board board)
         {
             if (!Boards.Contains(board))
@@ -35,6 +37,7 @@
                 board.State = BoardState.Rented;
             }
         }
+        */
 
     }
 }

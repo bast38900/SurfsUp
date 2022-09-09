@@ -12,8 +12,8 @@ using SurfsUp.Data;
 namespace SurfsUp.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    [Migration("20220907112041_NewOrder")]
-    partial class NewOrder
+    [Migration("20220908080927_SurfsUp.data")]
+    partial class SurfsUpdata
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,7 +41,7 @@ namespace SurfsUp.Migrations
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Picture")
@@ -98,9 +98,7 @@ namespace SurfsUp.Migrations
                 {
                     b.HasOne("SurfsUp.Models.Order", "Order")
                         .WithMany("Boards")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.Navigation("Order");
                 });
