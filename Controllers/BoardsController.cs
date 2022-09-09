@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
@@ -16,12 +17,16 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index(string searchString, string sortOrder)
+        public async Task<IActionResult> Index(string searchString, string sortOrder, string boardType)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
             ViewBag.TypeSortParm = sortOrder == "Type" ? "type_desc" : "";
             ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "";
             ViewData["CurrentFilter"] = searchString;
+
+            IQueryable<string> typeQuery = from b in _context.Board
+                                            orderby b.Type
+                                            select b.Type;
 
             var boards = from b in _context.Board
                          select b;
@@ -29,6 +34,11 @@ namespace SurfsUp.Controllers
             if (!String.IsNullOrEmpty(searchString))
             {
                 boards = boards.Where(s => s.BoardName!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(boardType))
+            {
+                boards = boards.Where(x => x.Type == boardType);
             }
 
             switch (sortOrder)
@@ -53,7 +63,15 @@ namespace SurfsUp.Controllers
                     break;
             }
 
-            return View(await boards.ToListAsync());
+            var boardTypeVM = new BoardTypeViewModel
+            {
+                Types = new SelectList(await typeQuery.Distinct().ToListAsync()),
+                Boards = await boards.ToListAsync()
+            };
+
+            return View(boardTypeVM);
+
+            //return View(await boards.ToListAsync());
 
             //    return _context.Board != null ? 
             //                 View(await _context.Board.ToListAsync());

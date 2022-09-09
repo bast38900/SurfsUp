@@ -1,4 +1,5 @@
-﻿@model IEnumerable<SurfsUp.Models.Board>
+﻿@*@model IEnumerable<SurfsUp.Models.Board>*@
+@model SurfsUp.Models.BoardTypeViewModel
 
 @{
     ViewData["BoardName"] = "Boards inventory";
@@ -29,6 +30,9 @@
         <form asp-action="Index" method="get">
             <div class="searchInput">
                 <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..."/>
+                <select asp-for="BoardType" asp-items="Model.Types">
+                <option value="">All</option>
+                </select>
                 <button type="submit" class="btn btn-dark">Search</button>
             </div>
         </form>
@@ -44,7 +48,7 @@
 
     <div class="product-list">
             <div class="row">
-                @foreach (var item in Model) {
+                @foreach (var item in Model.Boards) {
                     <div class="col-auto">
                         <div class="product-grid">
                             <div class="product-image">
@@ -61,7 +65,7 @@
                             <div class="product-content">
                                 <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
                                 <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
-                                <p>Status: available</p>
+                                <p>Status: @Html.DisplayFor(modelItem => item.State)</p>
                             </div>
                         </div>
                     </div>
