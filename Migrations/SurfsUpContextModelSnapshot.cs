@@ -39,7 +39,7 @@ namespace SurfsUp.Migrations
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid?>("OrderId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Picture")
@@ -96,9 +96,7 @@ namespace SurfsUp.Migrations
                 {
                     b.HasOne("SurfsUp.Models.Order", "Order")
                         .WithMany("Boards")
-                        .HasForeignKey("OrderId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrderId");
 
                     b.Navigation("Order");
                 });
