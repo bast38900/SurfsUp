@@ -1,20 +1,10 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
-using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SurfsUpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SurfsUpContext") ?? throw new InvalidOperationException("Connection string 'SurfsUpContext' not found.")));
-
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<IdentitySurfsUpContext>();
-
-/// <summary>
-/// Make Program.cs use the right connectionstring for identity db on startup
-/// </summary>
-var connectionString = builder.Configuration.GetConnectionString("IdentitySurfsUpContextConnection");
-builder.Services.AddDbContext<IdentitySurfsUpContext>(x => x.UseSqlServer(connectionString));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -45,13 +35,16 @@ app.UseRequestLocalization("fr-FR");
 app.UseStaticFiles();
 
 app.UseRouting();
-app.UseAuthentication();;
 
 app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
+<<<<<<< HEAD
     pattern: "{controller=Rental}/{action=Index}/{id?}");
 app.MapRazorPages();
+=======
+    pattern: "{controller=Boards}/{action=Index}/{id?}");
+>>>>>>> main
 
 app.Run();
