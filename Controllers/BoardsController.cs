@@ -20,8 +20,8 @@ namespace SurfsUp.Controllers
         public async Task<IActionResult> Index(string searchString, string sortOrder, string boardType)
         {
             ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-            ViewBag.TypeSortParm = String.IsNullOrEmpty(sortOrder) ? "type_desc" : "";
-            ViewData["PriceSortParm"] = sortOrder == "Price" ? "price_desc" : "Price";
+            ViewBag.TypeSortParm = sortOrder == "Type" ? "type_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "";
             ViewData["CurrentFilter"] = searchString;
 
             IQueryable<string> typeQuery = from b in _context.Board
