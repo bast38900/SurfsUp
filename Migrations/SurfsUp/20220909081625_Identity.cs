@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace SurfsUp.Migrations
+namespace SurfsUp.Migrations.SurfsUp
 {
-    public partial class SurfsUpData : Migration
+    public partial class Identity : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

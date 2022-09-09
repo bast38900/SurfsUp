@@ -9,11 +9,11 @@ using SurfsUp.Data;
 
 #nullable disable
 
-namespace SurfsUp.Migrations
+namespace SurfsUp.Migrations.SurfsUp
 {
     [DbContext(typeof(SurfsUpContext))]
-    [Migration("20220907205358_SurfsUp.Data")]
-    partial class SurfsUpData
+    [Migration("20220909081625_Identity")]
+    partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

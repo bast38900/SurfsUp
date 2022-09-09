@@ -41,27 +41,15 @@ namespace SurfsUp.Controllers
                 boards = boards.Where(x => x.Type == boardType);
             }
 
-            switch (sortOrder)
+            boards = sortOrder switch
             {
-                case "name_desc":
-                    boards = boards.OrderByDescending(b => b.BoardName);
-                    break;
-                case "Type":
-                    boards = boards.OrderBy(b => b.Type);
-                    break;
-                case "type_desc":
-                    boards = boards.OrderByDescending(b => b.Type);
-                    break;
-                case "Price":
-                    boards = boards.OrderBy(b => b.Price);
-                    break;
-                case "price_desc":
-                    boards = boards.OrderByDescending(b => b.Price);
-                    break;
-                default:
-                    boards = boards.OrderBy(b => b.BoardName);
-                    break;
-            }
+                "name_desc" => boards.OrderByDescending(b => b.BoardName),
+                "Type" => boards.OrderBy(b => b.Type),
+                "type_desc" => boards.OrderByDescending(b => b.Type),
+                "Price" => boards.OrderBy(b => b.Price),
+                "price_desc" => boards.OrderByDescending(b => b.Price),
+                _ => boards.OrderBy(b => b.BoardName),
+            };
 
             var boardTypeVM = new BoardTypeViewModel
             {
