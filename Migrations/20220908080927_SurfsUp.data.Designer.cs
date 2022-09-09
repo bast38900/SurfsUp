@@ -12,8 +12,8 @@ using SurfsUp.Data;
 namespace SurfsUp.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    [Migration("20220907105145_Matt")]
-    partial class Matt
+    [Migration("20220908080927_SurfsUp.data")]
+    partial class SurfsUpdata
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -41,11 +41,17 @@ namespace SurfsUp.Migrations
                     b.Property<double>("Length")
                         .HasColumnType("float");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");
@@ -63,7 +69,43 @@ namespace SurfsUp.Migrations
 
                     b.HasKey("BoardId");
 
+                    b.HasIndex("OrderId");
+
                     b.ToTable("Board");
+                });
+
+            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfSubmission")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("SurfsUp.Models.Board", b =>
+                {
+                    b.HasOne("SurfsUp.Models.Order", "Order")
+                        .WithMany("Boards")
+                        .HasForeignKey("OrderId");
+
+                    b.Navigation("Order");
+                });
+
+            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+                {
+                    b.Navigation("Boards");
                 });
 #pragma warning restore 612, 618
         }
