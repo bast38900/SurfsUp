@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
@@ -15,11 +17,65 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(string searchString, string sortOrder, string boardType)
         {
-              return _context.Board != null ? 
-                          View(await _context.Board.ToListAsync()) :
-                          Problem("Entity set 'SurfsUpContext.Board'  is null.");
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewBag.TypeSortParm = sortOrder == "Type" ? "type_desc" : "";
+            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
+            IQueryable<string> typeQuery = from b in _context.Board
+                                            orderby b.Type
+                                            select b.Type;
+
+            var boards = from b in _context.Board
+                         select b;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                boards = boards.Where(s => s.BoardName!.Contains(searchString));
+            }
+
+            if (!string.IsNullOrEmpty(boardType))
+            {
+                boards = boards.Where(x => x.Type == boardType);
+            }
+
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    boards = boards.OrderByDescending(b => b.BoardName);
+                    break;
+                case "Type":
+                    boards = boards.OrderBy(b => b.Type);
+                    break;
+                case "type_desc":
+                    boards = boards.OrderByDescending(b => b.Type);
+                    break;
+                case "Price":
+                    boards = boards.OrderBy(b => b.Price);
+                    break;
+                case "price_desc":
+                    boards = boards.OrderByDescending(b => b.Price);
+                    break;
+                default:
+                    boards = boards.OrderBy(b => b.BoardName);
+                    break;
+            }
+
+            var boardTypeVM = new BoardTypeViewModel
+            {
+                Types = new SelectList(await typeQuery.Distinct().ToListAsync()),
+                Boards = await boards.ToListAsync()
+            };
+
+            return View(boardTypeVM);
+
+            //return View(await boards.ToListAsync());
+
+            //    return _context.Board != null ? 
+            //                 View(await _context.Board.ToListAsync());
+            //                 Problem("Entity set 'SurfsUpContext.Board'  is null.");
         }
 
         // GET: Boards/Details/5
@@ -51,7 +107,7 @@ namespace SurfsUp.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BoardId,BoardName,Lenght,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<IActionResult> Create([Bind("BoardId,BoardName,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
         {
             //ModelState.Remove("Equipment");
 

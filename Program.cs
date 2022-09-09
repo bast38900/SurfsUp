@@ -40,6 +40,11 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
+<<<<<<< HEAD
+    pattern: "{controller=Rental}/{action=Index}/{id?}");
+app.MapRazorPages();
+=======
     pattern: "{controller=Boards}/{action=Index}/{id?}");
+>>>>>>> main
 
 app.Run();

@@ -2,6 +2,12 @@
 
 namespace SurfsUp.Models
 {
+    public enum BoardState
+    {
+        Available,
+        Rented
+    }
+
     public class Board
     {
         public Guid BoardId { get; set; }
@@ -9,6 +15,8 @@ namespace SurfsUp.Models
         [StringLength(255, MinimumLength = 1)]
         [Required]
         public string BoardName { get; set; }
+
+        public BoardState State { get; set; } = BoardState.Available;
 
         private string? picture;
         public string? Picture
@@ -33,10 +41,6 @@ namespace SurfsUp.Models
         [DataType(DataType.Currency)]
         public decimal Price { get; set; }
 
-
-        /// <summary>
-        /// Removes validation through null coalescing operator -> se set.
-        /// </summary>
         private string? equipment;
         public string? Equipment
         {

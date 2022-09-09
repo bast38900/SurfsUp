@@ -36,7 +36,7 @@ namespace SurfsUp.Migrations
                     b.Property<string>("Equipment")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("Lenght")
+                    b.Property<double>("Length")
                         .HasColumnType("float");
 
                     b.Property<string>("Picture")
@@ -44,6 +44,9 @@ namespace SurfsUp.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
 
                     b.Property<double>("Thickness")
                         .HasColumnType("float");
@@ -62,6 +65,38 @@ namespace SurfsUp.Migrations
                     b.HasKey("BoardId");
 
                     b.ToTable("Board");
+                });
+
+            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+                {
+                    b.Property<Guid>("OrderId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("BoardId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateOfDelivery")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateOfSubmission")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Total")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Order");
+                });
+
+            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+                {
+                    b.HasOne("SurfsUp.Models.Board", "Board")
+                        .WithMany()
+                        .HasForeignKey("BoardId");
+
+                    b.Navigation("Board");
                 });
 #pragma warning restore 612, 618
         }
