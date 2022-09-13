@@ -30,7 +30,6 @@ namespace Identity.Controllers
             {
                 AppUser appUser = new AppUser
                 {
-                    Name = user.Name,
                     UserName = user.Email,
                     Email = user.Email
                 };
