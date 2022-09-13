@@ -9,11 +9,11 @@ using SurfsUp.Data;
 
 #nullable disable
 
-namespace SurfsUp.Migrations.SurfsUp
+namespace SurfsUp.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    [Migration("20220909082601_Application")]
-    partial class Application
+    [Migration("20220913094012_application")]
+    partial class application
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,32 +69,32 @@ namespace SurfsUp.Migrations.SurfsUp
                     b.ToTable("Board");
                 });
 
-            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+            modelBuilder.Entity("SurfsUp.Models.Rent", b =>
                 {
-                    b.Property<Guid>("OrderId")
+                    b.Property<Guid>("RentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("BoardId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("DateOfDelivery")
+                    b.Property<DateTime>("EndRent")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("DateOfSubmission")
+                    b.Property<DateTime>("StartRent")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.HasKey("OrderId");
+                    b.HasKey("RentId");
 
                     b.HasIndex("BoardId");
 
-                    b.ToTable("Order");
+                    b.ToTable("Rent");
                 });
 
-            modelBuilder.Entity("SurfsUp.Models.Order", b =>
+            modelBuilder.Entity("SurfsUp.Models.Rent", b =>
                 {
                     b.HasOne("SurfsUp.Models.Board", "Board")
                         .WithMany()

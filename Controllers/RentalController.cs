@@ -27,9 +27,31 @@ namespace SurfsUp.Controllers
             int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
-;
-            var boards = from b in _context.Board where b.State == BoardState.Available select b;
 
+            var boards = from b in _context.Board select b;
+            var rentals = from r in _context.Rent select r;
+
+            // Check if rental has ended
+            foreach (var board in boards)
+            {
+                if (board.State == BoardState.Rented)
+                {
+                    foreach (var rental in rentals)
+                    {
+                        if (rental.EndRent < DateTime.Now)
+                        {
+                            board.State = BoardState.Available;
+                        }
+                    }
+                }
+            }
+
+            await _context.SaveChangesAsync();
+            await _context.Board.ToListAsync();
+
+            boards = boards.Where(board => board.State == BoardState.Available);
+
+            // Search
             if (!String.IsNullOrEmpty(searchString))
             {
                 boards = boards.Where(s => s.BoardName!.Contains(searchString));
@@ -60,7 +82,7 @@ namespace SurfsUp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent([FromRoute] Guid? id, [Bind("DateOfDelivery")] Order order)
+        public async Task<IActionResult> Rent([FromRoute] Guid? id, [Bind("EndRent")] Rent rent)
         {
             var boards = from b in _context.Board select b;
 
@@ -70,18 +92,18 @@ namespace SurfsUp.Controllers
                 {
                     if (board.BoardId == id)
                     {
-                        order.Board = board;
-                        order.DateOfSubmission = DateTime.Now;
+                        rent.Board = board;
+                        rent.StartRent = DateTime.Now;
+                        rent.Total = board.Price;
                         board.State = BoardState.Rented;
-                        order.Total = board.Price;
                         break;
                     }
                 }
 
-                _context.Add(order);
+                _context.Add(rent);
                 await _context.SaveChangesAsync();
 
-                TempData["SuccessMessage"] = $"You have now rented the \"{order.Board?.BoardName}\" board";
+                TempData["SuccessMessage"] = $"You have now rented the \"{rent.Board?.BoardName}\" board";
                 return RedirectToAction("Store", "Rental", new { ac = "success" });
             }
 
