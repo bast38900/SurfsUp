@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using SurfsUp.Data;
-using SurfsUp.Models;
-using System;
-using System.Linq;
 
 namespace SurfsUp.Models
 
