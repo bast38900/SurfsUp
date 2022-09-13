@@ -8,11 +8,10 @@ builder.Services.AddDbContext<SurfsUpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SurfsUpContext") ?? throw new InvalidOperationException("Connection string 'SurfsUpContext' not found.")));
 
 builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<IdentitySurfsUpContext>();
 
-//builder.Services.AddIdentity<AppUser, IdentityRole>()
-//    .AddEntityFrameworkStores<IdentitySurfsUpContext>()
-//    .AddDefaultTokenProviders();
+
 
 /// <summary>
 /// Make Program.cs use the right connectionstring for identity db on startup
