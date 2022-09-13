@@ -1,9 +1,11 @@
 ﻿@model AppUser
 @{
-    ViewData["Title"] = "UPDATE USER";
+    ViewData["Title"] = "Update User";
 }
  
-<h1 class="bg-info text-white">Update User</h1>
+<div class="page-title">
+    <h1>@ViewData["Title"]</h1>
+</div>
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
  

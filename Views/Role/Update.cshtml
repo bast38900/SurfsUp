@@ -1,9 +1,11 @@
 ﻿@model RoleEdit
 @{
-    ViewData["Title"] = "UPDATE ROLE";
+    ViewData["Title"] = "Update Role";
 }
   
-<h1 class="bg-info text-white">Update Role</h1>
+<div class="page-title">
+    <h1>@ViewData["Title"]</h1>
+</div>
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
   
@@ -11,7 +13,7 @@
     <input type="hidden" name="roleName" value="@Model.Role.Name" />
     <input type="hidden" name="roleId" value="@Model.Role.Id" />
       
-    <h2 class="bg-info p-1 text-white">Add To @Model.Role.Name</h2>
+    <h2 class="shop-header">Add To @Model.Role.Name</h2>
     <table class="table table-bordered table-sm">
         @if (Model.NonMembers.Count() == 0)
         {
@@ -31,7 +33,7 @@
         }
     </table>
   
-    <h2 class="bg-info p-1 text-white">Remove From @Model.Role.Name</h2>
+    <h2 class="shop-header">Remove From @Model.Role.Name</h2>
     <table class="table table-bordered table-sm">
         @if (Model.Members.Count() == 0)
         {

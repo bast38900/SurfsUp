@@ -1,9 +1,11 @@
 ﻿@model string
 @{
-    ViewData["Title"] = "CREATE ROLE";
+    ViewData["Title"] = "Create Role";
 }
   
-<h1 class="bg-info text-white">Create a Role</h1>
+<div class="page-title">
+    <h1>@ViewData["Title"]</h1>
+</div>
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
   
