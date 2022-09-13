@@ -1,10 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SurfsUp.Models;
 
 namespace SurfsUp.Data;
 
-public class IdentitySurfsUpContext : IdentityDbContext<IdentityUser>
+public class IdentitySurfsUpContext : IdentityDbContext<AppUser>
 {
     public IdentitySurfsUpContext(DbContextOptions<IdentitySurfsUpContext> options)
         : base(options)
