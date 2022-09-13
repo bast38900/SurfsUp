@@ -2,9 +2,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SurfsUp.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Identity.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Manager")]
     public class UserController : Controller
     {
         private UserManager<AppUser> userManager;
