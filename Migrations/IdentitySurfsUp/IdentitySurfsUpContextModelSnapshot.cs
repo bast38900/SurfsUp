@@ -8,7 +8,7 @@ using SurfsUp.Data;
 
 #nullable disable
 
-namespace SurfsUp.Migrations
+namespace SurfsUp.Migrations.IdentitySurfsUp
 {
     [DbContext(typeof(IdentitySurfsUpContext))]
     partial class IdentitySurfsUpContextModelSnapshot : ModelSnapshot

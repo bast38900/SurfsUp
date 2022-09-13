@@ -10,6 +10,6 @@ namespace SurfsUp.Data
         }
 
         public DbSet<SurfsUp.Models.Board> Board { get; set; } = default!;
-        public DbSet<SurfsUp.Models.Order> Order { get; set; } = default!;
+        public DbSet<SurfsUp.Models.Rent> Rent { get; set; } = default!;
     }
 }
