@@ -1,4 +1,5 @@
-﻿@model string
+﻿@*View to create new identity role, values come from RoleController*@
+@model string
 @{
     ViewData["Title"] = "Create Role";
 }
@@ -8,7 +9,8 @@
 </div>
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
-  
+
+@*Form to type name for role creation*@  
 <form asp-action="Create" method="post">
     <div class="form-group">
         <label for="name">Name:</label>

@@ -1,6 +1,7 @@
-﻿@model RoleEdit
+﻿@*View to edit role and associations, values come from RoleController*@
+@model RoleEdit
 @{
-    ViewData["Title"] = "Update Role";
+    ViewData["Title"] = "Edit Role";
 }
   
 <div class="page-title">
@@ -9,6 +10,7 @@
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
   
+@*Form to add or remove user from role*@
 <form method="post">
     <input type="hidden" name="roleName" value="@Model.Role.Name" />
     <input type="hidden" name="roleId" value="@Model.Role.Id" />
@@ -21,10 +23,12 @@
         }
         else
         {
+            @*Loop through all nonMember users*@
             @foreach (AppUser user in Model.NonMembers)
             {
                 <tr>
                     <td>@user.UserName</td>
+                    @*Add Checkbox*@
                     <td>
                         <input type="checkbox" name="AddIds" value="@user.Id">
                     </td>
@@ -41,10 +45,12 @@
         }
         else
         {
+            @*Loop through all Member users*@
             @foreach (AppUser user in Model.Members)
             {
                 <tr>
                     <td>@user.UserName</td>
+                    @*Remove Checkbox*@
                     <td>
                         <input type="checkbox" name="DeleteIds" value="@user.Id">
                     </td>

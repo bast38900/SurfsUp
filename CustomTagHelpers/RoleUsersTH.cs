@@ -4,6 +4,13 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 
 namespace SurfsUp.CustomTagHelpers
 {
+    // Custom Tag Helper Class, for i-Role in Role/Index.cshtml
+    // This Custom Tag Helper operates on the td elements having an i-role attribute.
+    // This attribute is used to receive the id of the role that is being processed.
+    // The RoleManager and UserManager objects fetches a list of all the users that resides in a given role.
+
+    // Also updated in the _ViewImports.cshtml file...
+
     [HtmlTargetElement("td", Attributes = "i-role")]
     public class RoleUsersTH : TagHelper
     {

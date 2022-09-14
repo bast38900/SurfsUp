@@ -2,6 +2,8 @@
 
 namespace SurfsUp.Models
 {
+    // Class for editing Roles
+    // Gets rolename and id, and add or delete users by id.
     public class RoleModification
     {
         [Required]

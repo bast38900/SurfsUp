@@ -32,7 +32,6 @@ namespace Identity.Controllers
         }
 
         #region CREATE 
-
         // Create action method for new users to Identity DB
 
         public ViewResult Create() => View();
@@ -70,12 +69,12 @@ namespace Identity.Controllers
         #endregion
 
         #region EDIT
-
-        // Edit action method for new users to Identity DB
+        // Edit action method for users in Identity DB
 
         // GET: user
         public async Task<IActionResult> Edit(string id)
         {
+            // Recieve user id and fetches record
             AppUser user = await userManager.FindByIdAsync(id);
             if (user != null)
                 return View(user);
@@ -86,6 +85,7 @@ namespace Identity.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(string id, string email, string password)
         {
+            // Recieve user id and fetches record
             AppUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
@@ -126,8 +126,7 @@ namespace Identity.Controllers
         #endregion
 
         #region DELETE
-
-        // Delete action method for new users to Identity DB
+        // Delete action method for users in Identity DB
 
         [HttpPost]
         public async Task<IActionResult> Delete(string id)
