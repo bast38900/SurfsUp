@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
@@ -7,14 +8,28 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SurfsUpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SurfsUpContext") ?? throw new InvalidOperationException("Connection string 'SurfsUpContext' not found.")));
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddEntityFrameworkStores<IdentitySurfsUpContext>();
 
-/// <summary>
-/// Make Program.cs use the right connectionstring for identity db on startup
-/// </summary>
+// Make Program.cs use the right connectionstring for identity db on startup
+
 var connectionString = builder.Configuration.GetConnectionString("IdentitySurfsUpContextConnection");
 builder.Services.AddDbContext<IdentitySurfsUpContext>(x => x.UseSqlServer(connectionString));
+
+// Add Identity as a service, and use AppUser as class for users.
+// Also add Roles via IdentityRole Class
+// Use IdentitySurfsUpContext for DB context
+
+builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireConfirmedAccount = false)
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<IdentitySurfsUpContext>();
+
+//Add Authorization as a service
+builder.Services.AddAuthorization(options =>
+{
+    options.FallbackPolicy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+});
+
 
 
 // Add services to the container.

@@ -2,9 +2,11 @@
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace SurfsUp.Controllers
 {
+    [AllowAnonymous]
     public class RentalController : Controller
     {
         private readonly SurfsUpContext _context;
