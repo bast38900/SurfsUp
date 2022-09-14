@@ -1,4 +1,5 @@
-﻿@model User
+﻿@*View to create new identity user, values come from UserController*@
+@model User
 @{
     ViewData["Title"] = "Create User";
 }
@@ -9,6 +10,8 @@
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
   
+
+@*Form to type email (for username) and password, for user creation*@
 <form method="post">
     <div class="form-group">
         <label asp-for="Email"></label>

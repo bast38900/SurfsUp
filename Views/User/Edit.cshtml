@@ -1,4 +1,5 @@
-﻿@model AppUser
+﻿@*View to edit identity user, values come from UserController*@
+@model AppUser
 @{
     ViewData["Title"] = "Update User";
 }
@@ -9,6 +10,7 @@
 <a asp-action="Index" class="btn btn-secondary">Back</a>
 <div asp-validation-summary="All" class="text-danger"></div>
  
+@*Form to edit email (for username) and password, for user creation*@
 <form asp-action="Edit" method="post">
     <div class="form-group">
         <label asp-for="Id"></label>
