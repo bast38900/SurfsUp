@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SurfsUp.Migrations.IdentitySurfsUp
 {
-    public partial class AddUser : Migration
+    public partial class SurfsUpdata : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
