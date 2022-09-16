@@ -33,12 +33,11 @@ builder.Services.AddAuthorization(options =>
 });
 
 var services = builder.Services;
-var configuration = builder.Configuration;
 
 services.AddAuthentication().AddGoogle(googleOptions =>
 {
-    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"];
-    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"];
+    googleOptions.ClientId = builder.Configuration["web:client_id"];
+    googleOptions.ClientSecret = builder.Configuration["web:client_secret"];
 });
 
 
