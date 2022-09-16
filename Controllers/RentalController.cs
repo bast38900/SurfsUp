@@ -40,9 +40,10 @@ namespace SurfsUp.Controllers
                 {
                     foreach (var rental in rentals)
                     {
-                        if (rental.EndRent < DateTime.Now)
+                        if (rental.EndRent < DateTime.Now && rental.RentState == RentState.RentedOut)
                         {
                             board.State = BoardState.Available;
+                            rental.RentState = RentState.RentFinished;
                         }
                     }
                 }
@@ -97,6 +98,7 @@ namespace SurfsUp.Controllers
                         rent.Board = board;
                         rent.StartRent = DateTime.Now;
                         rent.Total = board.Price;
+                        rent.RentState = RentState.RentedOut;
                         board.State = BoardState.Rented;
                         break;
                     }
