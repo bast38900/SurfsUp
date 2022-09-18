@@ -8,9 +8,7 @@ namespace Identity.Controllers
 {
     // Controller class for CRUD opreations on users
     // Authorization used to deny access for unapproved users
-
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Manager")]
+    [Authorize(Roles = "SuperAdmin")]
     public class UserController : Controller
     {
         // Get instance of UserManager and IpasswordHasher through Dependency Injection
