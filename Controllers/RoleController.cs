@@ -2,11 +2,14 @@
 using Microsoft.AspNetCore.Identity;
 using System.ComponentModel.DataAnnotations;
 using SurfsUp.Models;
+using Microsoft.AspNetCore.Authorization;
+using System.Data;
 
 namespace SurfsUp.Controllers
 {
     // Controller class for CRUD opreations on users
     // Authorization used to deny access for unapproved users
+    [Authorize(Roles = "SuperAdmin")]
     public class RoleController : Controller
     {
         // Get instance of RoleManager and UserManager through Dependency Injection

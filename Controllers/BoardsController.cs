@@ -8,7 +8,10 @@ using SurfsUp.Models;
 
 namespace SurfsUp.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    // Controller class for CRUD opreations on boards
+    // Authorization used to deny access for unapproved users
+    [Authorize(Roles = "SuperAdmin")]
+    [Authorize(Roles = "Admin")]
     public class BoardsController : Controller
     {
         private readonly SurfsUpContext _context;
