@@ -144,11 +144,14 @@ namespace Identity.Controllers
                 {
                     if (rental.UserId == Guid.Parse(user.Id))
                     {
-                        foreach (var board in boards)
+                        if (rental.EndRent > DateTime.Now && rental.RentState == RentState.RentFinished)
                         {
-                            board.State = BoardState.Available;
+                            foreach (var board in boards)
+                            {
+                                board.State = BoardState.Available;
+                            }
                         }
-                        _context.Rent.Remove(rental);
+                            _context.Rent.Remove(rental);
                     }
                 }
                 
