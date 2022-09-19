@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SurfsUp.Data;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Controllers
 {
@@ -12,13 +13,15 @@ namespace Identity.Controllers
     public class UserController : Controller
     {
         // Get instance of UserManager and IpasswordHasher through Dependency Injection
+        private readonly SurfsUpContext _context;
         private UserManager<AppUser> userManager;
         private IPasswordHasher<AppUser> passwordHasher;
 
         
         // Constructor for controller, adds user and passwordhasher (to encrypt passwords)
-        public UserController(UserManager<AppUser> usrMgr, IPasswordHasher<AppUser> passwordHash)
+        public UserController(SurfsUpContext context, UserManager<AppUser> usrMgr, IPasswordHasher<AppUser> passwordHash)
         {
+            _context = context;
             userManager = usrMgr;
             passwordHasher = passwordHash;
         }
@@ -133,6 +136,27 @@ namespace Identity.Controllers
             AppUser user = await userManager.FindByIdAsync(id);
             if (user != null)
             {
+                // Deletes every rent associated with the deleted user
+                var rentals = from r in _context.Rent select r;
+                var boards = from b in _context.Board select b;
+
+                foreach (var rental in rentals)
+                {
+                    if (rental.UserId == Guid.Parse(user.Id))
+                    {
+                        if (rental.EndRent > DateTime.Now && rental.RentState == RentState.RentFinished)
+                        {
+                            foreach (var board in boards)
+                            {
+                                board.State = BoardState.Available;
+                            }
+                        }
+                            _context.Rent.Remove(rental);
+                    }
+                }
+                
+                _context.SaveChanges();
+
                 // Deletes the user and returns to index view
                 IdentityResult result = await userManager.DeleteAsync(user);
                 if (result.Succeeded)
@@ -140,6 +164,7 @@ namespace Identity.Controllers
                 else
                     Errors(result);
             }
+
             // Errormessaging if method isn't succesfull
             else
                 ModelState.AddModelError("", "User Not Found");

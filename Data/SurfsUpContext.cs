@@ -4,6 +4,10 @@ namespace SurfsUp.Data
 {
     public class SurfsUpContext : DbContext
     {
+        public SurfsUpContext()
+        {
+        }
+
         public SurfsUpContext (DbContextOptions<SurfsUpContext> options)
             : base(options)
         {
