@@ -3,6 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
+using System.Linq;
 
 namespace SurfsUp.Controllers
 {
@@ -10,10 +13,12 @@ namespace SurfsUp.Controllers
     public class RentalController : Controller
     {
         private readonly SurfsUpContext _context;
+        private readonly UserManager<AppUser> _userManager;
 
-        public RentalController(SurfsUpContext context)
+        public RentalController(SurfsUpContext context, UserManager<AppUser> userManager)
         {
             _context = context;
+            _userManager = userManager;
         }
 
         public IActionResult Index()
@@ -88,6 +93,7 @@ namespace SurfsUp.Controllers
         public async Task<IActionResult> Rent([FromRoute] Guid? id, [Bind("EndRent")] Rent rent)
         {
             var boards = from b in _context.Board select b;
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             if (ModelState.IsValid)
             {
@@ -99,10 +105,12 @@ namespace SurfsUp.Controllers
                         rent.StartRent = DateTime.Now;
                         rent.Total = board.Price;
                         rent.RentState = RentState.RentedOut;
+                        rent.UserId = Guid.Parse(userId);
                         board.State = BoardState.Rented;
                         break;
                     }
                 }
+
 
                 _context.Add(rent);
                 await _context.SaveChangesAsync();
