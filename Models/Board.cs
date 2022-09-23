@@ -48,5 +48,8 @@ namespace SurfsUp.Models
             get { return equipment; }
             set { equipment = value ?? ""; }
         }
+
+        [Timestamp]
+        public byte[] RowVersion { get; set; }
     }
 }

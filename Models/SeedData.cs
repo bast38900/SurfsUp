@@ -35,7 +35,6 @@ namespace SurfsUp.Models
                     await userManager.AddToRoleAsync(defaultUser, Roles.Admin.ToString());
                     await userManager.AddToRoleAsync(defaultUser, Roles.SuperAdmin.ToString());
                 }
-
             }
         }
 
