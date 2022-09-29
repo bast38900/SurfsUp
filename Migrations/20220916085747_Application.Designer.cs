@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurfsUp.Data;
 
@@ -11,9 +12,10 @@ using SurfsUp.Data;
 namespace SurfsUp.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    partial class SurfsUpContextModelSnapshot : ModelSnapshot
+    [Migration("20220916085747_Application")]
+    partial class Application
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -45,12 +47,6 @@ namespace SurfsUp.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<byte[]>("RowVersion")
-                        .IsConcurrencyToken()
-                        .IsRequired()
-                        .ValueGeneratedOnAddOrUpdate()
-                        .HasColumnType("rowversion");
-
                     b.Property<int>("State")
                         .HasColumnType("int");
 
@@ -79,7 +75,7 @@ namespace SurfsUp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BoardId")
+                    b.Property<Guid?>("BoardId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndRent")
@@ -94,9 +90,6 @@ namespace SurfsUp.Migrations
                     b.Property<decimal>("Total")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("RentId");
 
                     b.HasIndex("BoardId");
@@ -108,9 +101,7 @@ namespace SurfsUp.Migrations
                 {
                     b.HasOne("SurfsUp.Models.Board", "Board")
                         .WithMany()
-                        .HasForeignKey("BoardId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("BoardId");
 
                     b.Navigation("Board");
                 });

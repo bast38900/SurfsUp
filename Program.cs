@@ -41,7 +41,6 @@ services.AddAuthentication().AddGoogle(googleOptions =>
 });
 
 
-
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
@@ -50,10 +49,29 @@ builder.Services.AddControllers(
 
 var app = builder.Build();
 
+//Add Seedata
 using (var scope = app.Services.CreateScope())
 {
     var Services = scope.ServiceProvider;
+    
+    // Add boards
     SeedData.Initialize(Services);
+
+    //Add Default Roles and User
+    var loggerFactory = Services.GetRequiredService<ILoggerFactory>();
+    try
+    {
+        var context = Services.GetRequiredService<IdentitySurfsUpContext>();
+        var userManager = Services.GetRequiredService<UserManager<AppUser>>();
+        var roleManager = Services.GetRequiredService<RoleManager<IdentityRole>>();
+        await SeedData.SeedRolesAsync(userManager, roleManager);
+        await SeedData.SeedSuperAdminAsync(userManager, roleManager);
+    }
+    catch (Exception ex)
+    {
+        var logger = loggerFactory.CreateLogger<Program>();
+        logger.LogError(ex, "An error occurred seeding the DB.");
+    }
 }
 
 // Configure the HTTP request pipeline.
