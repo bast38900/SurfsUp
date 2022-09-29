@@ -33,9 +33,9 @@ namespace SurfsUpAPI.Controllers
                     availabelBoards.Add(board);
                 }
             }
-
             return Ok(availabelBoards);
         }
+
         [HttpPut]
         [Route("RentBoard/{boardId:guid}")]
 
@@ -57,9 +57,6 @@ namespace SurfsUpAPI.Controllers
                     break;
                 }
             }
-            
-            
-            
             return Ok(boards);
         }
     }
