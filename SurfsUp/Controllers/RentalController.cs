@@ -6,11 +6,9 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Linq;
-using System.Net.Http;
-using Microsoft.DotNet.MSIdentity.Shared;
 using System.Text.Json;
-using System.Text;
-using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace SurfsUp.Controllers
 {
@@ -33,73 +31,36 @@ namespace SurfsUp.Controllers
         }
 
         // GET: Boards
-        public async Task<IActionResult> Store(
-            string sortOrder,
-            string currentFilter,
-            string searchString,
-            int? pageNumber)
+        public async Task<IActionResult> Store(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
             ViewData["CurrentSort"] = sortOrder;
 
-            using HttpClient client = new()
-            {
-                BaseAddress = new Uri("https://localhost:7276")
-            };
-
+            using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7276") };
             string Uri = "/api/AvailableBoards";
 
             using HttpResponseMessage response = await client.GetAsync(Uri);
-            response.EnsureSuccessStatusCode();
-
-            List<Board> boards;
-            using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(response.ToString())))
-            {
-                DataContractJsonSerializer deserializer = new DataContractJsonSerializer(typeof(List<Board>));
-                boards = (List<Board>)deserializer.ReadObject(ms); 
-            }
-            // var jsonResponse = await response.Content.ReadAsStringAsync();
-            // boards = JsonSerializer.Deserialize<List<Board>>(jsonResponse);
-
-            return View(boards);
-
-            // Check if rental has ended
-            //foreach (var board in boards)
-            //{
-            //    if (board.State == BoardState.Rented)
-            //    {
-            //        foreach (var rental in rentals)
-            //        {
-            //            if (rental.EndRent < DateTime.Now && rental.RentState == RentState.RentedOut)
-            //            {
-            //                board.State = BoardState.Available;
-            //                rental.RentState = RentState.RentFinished;
-            //            }
-            //        }
-            //    }
-            //}
-
-            //await _context.SaveChangesAsync();
-            //await _context.Board.ToListAsync();
-
-            //boards = boards.Where(board => board.State == BoardState.Available);
+            var jsonResponse = await response.Content.ReadAsStringAsync();
+            
+            IEnumerable<Board>? boards = JsonConvert.DeserializeObject<List<Board>>(jsonResponse);
 
             // Search
-            //if (!String.IsNullOrEmpty(searchString))
-            //{
-            //    boards = boards.Where(s => s.BoardName!.Contains(searchString));
-            //}
+            if (!string.IsNullOrEmpty(searchString))
+            {
+                boards = boards.Where(s => s.BoardName!.Contains(searchString));
+            }
 
-            //if (searchString != null)
-            //{
-            //    pageNumber = 1;
-            //}
-            //else
-            //{
-            //    searchString = currentFilter;
-            //}
+            if (searchString != null)
+            {
+                pageNumber = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
 
-            //int pageSize = 4;
-            //return View(await PaginatedList<Board>.CreateAsync(boards.AsNoTracking(), pageNumber ?? 1, pageSize));
+            int pageSize = 4;
+
+            return View(await PaginatedList<Board>.CreateAsync(boards, pageNumber ?? 1, pageSize));
         }
 
         public IActionResult Rent(Guid? id)
@@ -114,36 +75,64 @@ namespace SurfsUp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent([FromRoute] Guid? id, [Bind("EndRent")] Rent rent)
+        public async Task<IActionResult> Rent([FromRoute] Guid? id, [FromBody] Rent rent)
         {
             var boards = from b in _context.Board select b;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if (ModelState.IsValid)
+            Rent tempRent = new Rent()
             {
-                foreach (var board in boards)
+                EndRent = rent.EndRent
+            };
+
+            using (HttpClient client = new())
+            {
+                client.BaseAddress = new Uri($"https://localhost:7276/api/RentBoard/{id}");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                
+                HttpResponseMessage postTask = await client.PostAsJsonAsync<Rent>("rent", tempRent);
+
+                if (postTask.IsSuccessStatusCode)
                 {
-                    if (board.BoardId == id)
-                    {
-                        rent.Board = board;
-                        rent.StartRent = DateTime.Now;
-                        rent.Total = board.Price;
-                        rent.RentState = RentState.RentedOut;
-                        rent.UserId = Guid.Parse(userId);
-                        board.State = BoardState.Rented;
-                        break;
-                    }
+                    TempData["SuccessMessage"] = $"You have now rented the \"{rent.Board?.BoardName}\" board";
+                    return RedirectToAction("Store", "Rental", new { ac = "success" });
+                }else
+                {
+                    return RedirectToAction("Store", "Rental");
                 }
-
-
-                _context.Add(rent);
-                await _context.SaveChangesAsync();
-
-                TempData["SuccessMessage"] = $"You have now rented the \"{rent.Board?.BoardName}\" board";
-                return RedirectToAction("Store", "Rental", new { ac = "success" });
             }
 
-            return RedirectToAction("Store", "Rental");
+            //string newRent = JsonConvert.SerializeObject(rent);
+
+            #region old
+
+            //if (ModelState.IsValid)
+            //{
+            //    foreach (var board in boards)
+            //    {
+            //        if (board.BoardId == id)
+            //        {
+            //            rent.Board = board;
+            //            rent.StartRent = DateTime.Now;
+            //            rent.Total = board.Price;
+            //            rent.RentState = RentState.RentedOut;
+            //            rent.UserId = Guid.Parse(userId);
+            //            board.State = BoardState.Rented;
+            //            break;
+            //        }
+            //    }
+
+            //    _context.Add(rent);
+            //    await _context.SaveChangesAsync();
+
+            //    TempData["SuccessMessage"] = $"You have now rented the \"{rent.Board?.BoardName}\" board";
+            //    return RedirectToAction("Store", "Rental", new { ac = "success" });
+            //}
+
+            //return RedirectToAction("Store", "Rental");
+
+            #endregion
         }
     }
 }

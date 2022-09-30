@@ -21,43 +21,66 @@ namespace SurfsUpAPI.Controllers
         [Route("AvailableBoards")]
         public async Task<ActionResult> GetAllAvailableBoards()
         {
-
             var boards = await _appDbContext.Board.ToListAsync();
+            var rentals = await _appDbContext.Rent.ToListAsync();
 
-            List<Board> availabelBoards = new();
+            List<Board> availableBoards = new();
 
             foreach (var board in boards)
             {
-                if (board.State == BoardState.Available)
+                if (board.State == BoardState.Rented)
                 {
-                    availabelBoards.Add(board);
+                    foreach (var rental in rentals)
+                    {
+                        if (rental.EndRent < DateTime.Now && rental.RentState == RentState.RentedOut && board.State == BoardState.Rented)
+                        {
+                            rental.RentState = RentState.RentFinished;
+                            board.State = BoardState.Available;
+                            availableBoards.Add(board);
+                            await _appDbContext.SaveChangesAsync();
+                        }
+                    }
+                }
+                else
+                {
+                    availableBoards.Add(board);
+                    await _appDbContext.SaveChangesAsync();
                 }
             }
-            return Ok(availabelBoards);
+
+            return Ok(availableBoards);
         }
 
-        [HttpPut]
+        [HttpPost]
         [Route("RentBoard/{boardId:guid}")]
-
-        public async Task<ActionResult> RentBoard([FromRoute] Guid boardId, [Bind("EndRent")] Rent rent)
+        public async Task<ActionResult> RentBoard([FromRoute] Guid boardId, [FromBody] Rent rent)
         {
             var boards = await _appDbContext.Board.ToListAsync();
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            foreach (var board in boards)
+            if (ModelState.IsValid)
             {
-                if (boardId == board.BoardId)
+                foreach (var board in boards)
                 {
-                    rent.Board = board;
-                    rent.StartRent = DateTime.Now;
-                    rent.Total = board.Price;
-                    rent.RentState = RentState.RentedOut;
-                    rent.UserId = Guid.Parse(userId);
-                    board.State = BoardState.Rented;
-                    break;
+                    if (boardId == board.BoardId)
+                    {
+                        rent.Board = board;
+                        rent.StartRent = DateTime.Now;
+                        rent.Total = board.Price;
+                        rent.RentState = RentState.RentedOut;
+                        rent.UserId = Guid.Parse(userId);
+                        board.State = BoardState.Rented;
+                        break;
+                    }
                 }
+
+                _appDbContext.Add(rent);
+                await _appDbContext.SaveChangesAsync();
+                
+                return StatusCode(201);
             }
-            return Ok(boards);
+
+            return BadRequest();
         }
     }
 }
