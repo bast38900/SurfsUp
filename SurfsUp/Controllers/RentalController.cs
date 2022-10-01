@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text.Json;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using System.Net.Http.Json;
 
 namespace SurfsUp.Controllers
 {
@@ -80,10 +81,7 @@ namespace SurfsUp.Controllers
             var boards = from b in _context.Board select b;
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            Rent tempRent = new Rent()
-            {
-                EndRent = rent.EndRent
-            };
+            IList<Rent> newrent = new List<Rent>();
 
             using (HttpClient client = new())
             {
@@ -91,12 +89,12 @@ namespace SurfsUp.Controllers
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
-                HttpResponseMessage postTask = await client.PostAsJsonAsync<Rent>("rent", tempRent);
+                HttpResponseMessage postData = await client.PostAsJsonAsync<Rent>("rent", (Rent)newrent);
 
-                if (postTask.IsSuccessStatusCode)
+                if (postData.IsSuccessStatusCode)
                 {
-                    TempData["SuccessMessage"] = $"You have now rented the \"{rent.Board?.BoardName}\" board";
-                    return RedirectToAction("Store", "Rental", new { ac = "success" });
+                    string results = postData.Content.ReadAsStringAsync().Result;
+                    newrent = JsonConvert.DeserializeObject<List<Rent>>(results);
                 }else
                 {
                     return RedirectToAction("Store", "Rental");
