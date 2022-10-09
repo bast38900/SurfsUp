@@ -1,0 +1,55 @@
+﻿@model SurfsUp.Models.BoardTypeViewModel
+@{
+    ViewData["Title"] = "Surfboards";
+}
+
+<h1 class="shop-header text-center">Inventory</h1>
+
+<div class="actions mt-3">
+    <div class="searchField">
+        <form asp-action="Index" method="get">
+            <div class="searchInput">
+                <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..."/>
+                <select asp-for="BoardType" asp-items="Model.Types">
+                <option value="">All</option>
+                </select>
+                <button type="submit" class="btn btn-dark">Search</button>
+            </div>
+        </form>
+            <a asp-action="Index" class="ms-3 mt-2">Back to Full List</a>
+    </div>
+    <div class="backToList">
+        <a class="btn btn-primary" asp-action="Create">Add new board</a>
+    </div>
+</div>
+
+
+<hr />
+
+    <div class="product-list">
+            <div class="row">
+                @foreach (var item in Model.Boards) {
+                    <div class="col-auto">
+                        <div class="product-grid">
+                            <div class="product-image">
+                                <a href="#" class="image">
+                                    <img class="board-image" src="@Url.Content(item.Picture)"/>
+                                </a>
+                                <span class="product-sale-label">@Html.DisplayFor(modelItem => item.BoardName)</span>
+                                <ul class="social">
+                                    <li><a class="Funtion_bt" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a></li>
+                                    <li><a class="Funtion_bt" asp-action="Details" asp-route-id="@item.BoardId">Details</a></li>
+                                    <li><a class="Funtion_bt" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a></li>
+                                </ul>
+                            </div>
+                            <div class="product-content">
+                                <h3 class="title"><a href="#">@Html.DisplayFor(modelItem => item.Type)</a></h3>
+                                <div class="price">@Html.DisplayFor(modelItem => item.Price)</div>
+                                <p>Status: @Html.DisplayFor(modelItem => item.State)</p>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+    </div>
+

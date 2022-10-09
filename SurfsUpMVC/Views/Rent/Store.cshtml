@@ -1,0 +1,64 @@
+﻿@model PaginatedList<SurfsUp.Models.Board>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    ViewData["Title"] = "Store";
+}
+
+<h1 class="shop-header text-center">Available boards for rent</h1>
+<div class="actions mt-3">
+    <div class="searchField">
+        <form asp-action="Store" method="get">
+            <div class="searchInput">
+                <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..."/>
+                <button type="submit" class="btn btn-dark">Search</button>
+            </div>
+        </form>
+            <a asp-action="store" class="ms-3 mt-2">Back to Full List</a>
+    </div>
+</div>
+<div class="shop">
+        <div class="container">
+            @if (TempData["SuccessMessage"] != null)
+             {
+                <div class="alert alert-success alert-dismissable">
+                     <strong>@TempData["SuccessMessage"]</strong>
+                </div>
+             }
+            <div class="row justify-content-center align-items-center">
+            @foreach (var item in Model)
+            {
+            <div class="col-md-3">
+                <div class="card">
+                    <img src="@Url.Content(item.Picture)" class="card-img-top">
+                    <div class="card-body">
+                        <h4 class="card-title">@Html.DisplayFor(modelItem => item.BoardName)</h4>
+                        <h6>Type: @Html.DisplayFor(modelItem => item.Type)</h6>
+                        <p class="card-text">Price: @Html.DisplayFor(modelItem => item.Price)</p>
+                        <div class="d-grid gap-2">
+                            <a class="btn btn-secondary" asp-action="Rent" asp-route-id="@item.BoardId">Rent now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+        <div class="pagination-buttons">
+            <a asp-action="Store"
+                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                asp-route-pageNumber="@(Model.PageIndex - 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="btn btn-light @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Store"
+                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                asp-route-pageNumber="@(Model.PageIndex + 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="btn btn-secondary ms-2 @nextDisabled">
+                Next
+            </a>
+        </div>
+    </div>
+</div>
