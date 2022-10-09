@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\phill\\Documents\\school\\SurfsUp\\SurfsUpAPI\\SurfsUpAPI.csproj": {}
+    "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUpAPI\\SurfsUpAPI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\phill\\Documents\\school\\SurfsUp\\SurfsUpAPI\\SurfsUpAPI.csproj": {
+    "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUpAPI\\SurfsUpAPI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\phill\\Documents\\school\\SurfsUp\\SurfsUpAPI\\SurfsUpAPI.csproj",
+        "projectUniqueName": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUpAPI\\SurfsUpAPI.csproj",
         "projectName": "SurfsUpAPI",
-        "projectPath": "C:\\Users\\phill\\Documents\\school\\SurfsUp\\SurfsUpAPI\\SurfsUpAPI.csproj",
-        "packagesPath": "C:\\Users\\phill\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\phill\\Documents\\school\\SurfsUp\\SurfsUpAPI\\obj\\",
+        "projectPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUpAPI\\SurfsUpAPI.csproj",
+        "packagesPath": "C:\\Users\\msoen\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\msoen\\Desktop\\SurfsUp-Github\\SurfsUpAPI\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\phill\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\msoen\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
