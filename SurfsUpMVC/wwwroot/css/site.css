@@ -3,20 +3,42 @@
 
 /* ========= GENERAL ========= */
 
-:root {
-    --light: #e3f2fd;
-    --medium: #f8f9fa;
+html {
+    height: 100%;
+    box-sizing: border-box;
 }
 
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6rem;
+}
+
+:root {
+    --light-background: #e3f2fd;
+    --ligt-grey: #f8f9fa;
+}
 
 * {
     font-family: 'Poppins', sans-serif;
 }
 
+h1, h2, h3, h4, h5, h6, p {
+    padding: 0;
+    margin: 0;
+}
+
 .header-text {
     padding: 50px 0 50px 0;
     margin-bottom: 30px;
-    background-color: var(--medium);
+    background-color: var(--ligt-grey);
+    text-align: center;
 }
 
     .header-text h1 {
@@ -25,14 +47,14 @@
         color: #03045e;
     }
 
-i {
-    padding: 0 5px 0 0;
-}
-
 footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
     padding: 50px 0 50px 0;
     text-align: center;
-    background-color: var(--light);
+    background-color: var(--light-background);
 }
 
     footer p {
@@ -42,68 +64,11 @@ footer {
         margin: 0;
     }
 
+i {
+    padding: 0 5px 0 0;
+}
+
 /* ========= Buttons ========= */
-
-
-
-/* ========= NAVBAR ========= */
-
-.navbar {
-    background-color: var(--light);
-    padding: 20px 0 20px 0;
-}
-
-.navbar-brand img {
-    height: 56px;
-}
-
-.nav-link {
-    font-size: 18px;
-}
-
-/* ========= SHOP ========= */
-
-.shop {
-    margin: 40px 0 40px 0;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: center;
-}
-
-    .shop-header {
-        margin: 50px 0 0 0;
-        font-weight: 700;
-    }
-
-.shop .card {
-    margin: 10px 0 10px 0;
-    border-width: 1px;
-}
-
-.pagination-buttons {
-    margin: 10px 0 0 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-/* ========= BOARDS ========= */
-
-.actions {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 0 0 20px 0;
-}
-
-.action-buttons {
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-}
-
-/* ========= MISC ========= */
 
 .btn-primary {
     color: #fff;
@@ -122,5 +87,102 @@ footer {
         background-color: #0a3577;
         border-color: #0a3577;
         box-shadow: 0 0 0 0.25rem rgba(10, 53, 119, 0.5);
+    }
+
+    .btn-primary:disabled, .btn-primary.disabled {
+        color: #fff;
+        background-color: #2b4a77;
+        border-color: #2b4a77;
+    }
+
+/* ========= NAVBAR ========= */
+
+.navbar {
+    background-color: var(--light-background);
+    padding: 25px 0 25px 0;
+}
+
+.navbar-brand img {
+    height: 60px;
+}
+
+.nav-link {
+    font-size: 18px;
+}
+
+/* ========= SHOP ========= */
+
+.store-actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 40px;
+}
+
+    .storeSearchBox {
+        display: flex;
+        gap: 15px;
+    }
+
+    .storeSearchInput {
+        display: flex;
+        gap: 15px;
+    }
+
+
+    .pagination-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+.card {
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+    .card .title {
+        font-weight: 600;
+    }
+
+    .card .type {
+        padding: 12px 0 15px 0;
+        font-weight: 400;
+        color: #868686;
+    }
+
+    .title-price {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .title-price p {
+            font-weight: 500;
+            height: 20px;
+            border-bottom: 4px solid rgba(21, 105, 231, 0.3);
+        }
+/* ========= BOARDS ========= */
+.actions {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 0 30px 0;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}
+
+    .searchBox {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .searchInput {
+        display: flex;
+        gap: 10px;
     }
 

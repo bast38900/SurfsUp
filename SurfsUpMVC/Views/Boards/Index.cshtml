@@ -3,25 +3,26 @@
     ViewData["Title"] = "Surfboards";
 }
 
-<section class="header-text">
-    <h1 class="text-center">Manage Boards</h1>
-</section>
+    <section class="header-text">
+        <h1>Manage Boards</h1>
+    </section>
 
 <div class="container mb-5">
     <div class="actions">
-        <div class="createNewBoard">
-            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-lg"></i>New Board</a>
-        </div>
         <div class="searchBox">
             <form asp-action="Index" method="get">
-                <div class="input-group mb-3">
+                <div class="input-group">
                     <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname...">
                     <select class="form-select" asp-for="BoardType" asp-items="Model.Types">
                         <option value="">All</option>
                     </select>
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i>Search</button>
                 </div>
             </form>
+            <a class="btn btn-light" asp-action="Index">Back to list</a>
+        </div>
+        <div class="createNewBoard">
+            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-lg"></i>New Board</a>
         </div>
     </div>
 

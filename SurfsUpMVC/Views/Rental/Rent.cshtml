@@ -1,9 +1,16 @@
 ﻿@model SurfsUp.Models.Rent;
 
-    <div class="container mt-5">
+@{
+    ViewData["Title"] = "Rent a board";
+}
+
+<section class="header-text">
+    <h1>Rent the board</h1>
+</section>
+
+    <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <h1 class="mt-3 mb-5 text-center">Rent the board</h1>
                 <form asp-action="Rent">
                     <div class="mb-3">
                         <label asp-for="EndRent" class="control-label mb-1">Rent to:</label>

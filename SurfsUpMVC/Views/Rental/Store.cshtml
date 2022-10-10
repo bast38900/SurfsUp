@@ -1,0 +1,78 @@
+﻿@model PaginatedList<SurfsUp.Models.Board>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    ViewData["Title"] = "Store";
+}
+
+<section class="header-text">
+    <h1>Rent a board</h1>
+</section>
+
+<div class="container mt-5 mb-5">
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success alert-dismissable">
+            <strong>@TempData["SuccessMessage"]</strong>
+        </div>
+    }
+    <div class="store-actions">
+        <div class="storeSearchBox">
+            <form id="searchForm" asp-action="Store" method="get">
+                <div class="storeSearchInput">
+                    <input type="text" id="SearchString" name="SearchString" class="form-control" value="@ViewData["CurrentFilter"]" placeholder="Boardname..." />
+                </div>
+            </form>
+            <button type="submit" form="searchForm" class="btn btn-primary"><i class="bi bi-search"></i>Search</button>
+            <a class="btn btn-light" asp-action="Store">Back to Full List</a>
+        </div>
+        <div class="pagination-buttons">
+            <a asp-action="Store"
+                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                asp-route-pageNumber="@(Model.PageIndex - 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="btn btn-light @prevDisabled">
+                Previous
+            </a>
+            <a asp-action="Store"
+                asp-route-sortOrder="@ViewData["CurrentSort"]"
+                asp-route-pageNumber="@(Model.PageIndex + 1)"
+                asp-route-currentFilter="@ViewData["CurrentFilter"]"
+                class="btn btn-primary @nextDisabled">
+                Next
+            </a>
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-3 mb-4">
+                <div class="item">
+                    <div class="card">
+                        <img src="@Url.Content(item.Picture)" class="card-img-top p-4">
+                        <div class="card-body">
+                            <div class="title-price">
+                                <h5 class="title">
+                                    @Html.DisplayFor(modelItem => item.BoardName)
+                                </h5>
+                                <p>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </p>
+                            </div>
+                            <h6 class="type">
+                                @Html.DisplayFor(modelItem => item.Type)
+                            </h6>
+                            <div class="d-grid gap-1">
+                                    <a class="btn btn-primary" asp-action="Rent" asp-route-id="@item.BoardId"><i class="bi bi-cart-fill"></i>Rent now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    </div>
+
