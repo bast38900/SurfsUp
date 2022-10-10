@@ -7,10 +7,10 @@
     <h1 class="text-center">Manage Boards</h1>
 </section>
 
-<div class="container">
+<div class="container mb-5">
     <div class="actions">
         <div class="createNewBoard">
-            <a class="btn btn-primary" asp-action="Create">Add new board</a>
+            <a class="btn btn-primary" asp-action="Create"><i class="bi bi-plus-lg"></i>New Board</a>
         </div>
         <div class="searchBox">
             <form asp-action="Index" method="get">
@@ -19,7 +19,7 @@
                     <select class="form-select" asp-for="BoardType" asp-items="Model.Types">
                         <option value="">All</option>
                     </select>
-                    <button type="submit" class="btn btn-dark">Search</button>
+                    <button type="submit" class="btn btn-primary">Search</button>
                 </div>
             </form>
         </div>
@@ -47,9 +47,9 @@
                     <td>@Html.DisplayFor(modelItem => item.State)</td>
                     <td>
                         <div class="action-buttons">
-                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.BoardId">Edit</a>
-                            <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.BoardId">Details</a>
-                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.BoardId">Delete</a>
+                            <a class="btn btn-primary btn-sm" asp-action="Edit" asp-route-id="@item.BoardId"><i class="bi bi-pencil-fill"></i>Edit</a>
+                            <a class="btn btn-secondary btn-sm" asp-action="Details" asp-route-id="@item.BoardId"><i class="bi bi-file-earmark-text-fill"></i>Details</a>
+                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.BoardId"><i class="bi bi-trash-fill"></i>Delete</a>
                         </div>
                     </td>
                 </tr>
