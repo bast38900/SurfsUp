@@ -68,8 +68,26 @@ i {
     padding: 0 5px 0 0;
 }
 
-/* ========= Buttons ========= */
+.social {
+    padding: 10px 0 30px 0;
+}
 
+.or-line {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 30px;
+}
+
+.or-line span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+#forgot-password {
+    color: #000000;
+}
+/* ========= Buttons ========= */
 .btn-primary {
     color: #fff;
     background-color: #0d47a1;
