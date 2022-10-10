@@ -13,7 +13,7 @@
     <div class="container mt-5 mb-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
-                <form asp-action="Rent" method="post">
+                <form asp-action="Rent" method="POST">
                     <div class="mb-3">
                         <label asp-for="EndRent" class="control-label mb-1">Rent to:</label>
                     <input asp-for="EndRent" class="form-control" type="datetime-local" min="@DateTime.Now.ToString("yyyy-MM-dd" + "T" + "HH:mm")" required />
