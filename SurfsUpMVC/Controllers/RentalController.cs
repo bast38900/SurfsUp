@@ -8,26 +8,28 @@ using Newtonsoft.Json;
 namespace SurfsUp.Controllers
 {
     [AllowAnonymous]
-    public class RentController : Controller
+    public class RentalController : Controller
     {
         private readonly SurfsUpContext _context;
 
         private readonly UserManager<AppUser> _userManager;
 
-        public RentController(UserManager<AppUser> userManager, SurfsUpContext surfsUpContext)
+        public RentalController(UserManager<AppUser> userManager, SurfsUpContext surfsUpContext)
         {
             _userManager = userManager;
             _context = surfsUpContext;
         }
 
-        #region Forside
         public IActionResult Index()
         {
             return View();
         }
-        #endregion
 
-        #region Butiksside
+        public IActionResult MyRents()
+        {
+            return View();
+        }
+
         // GET: Boards
         public async Task<IActionResult> Store(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
@@ -56,13 +58,11 @@ namespace SurfsUp.Controllers
                 searchString = currentFilter;
             }
 
-            int pageSize = 4;
+            int pageSize = 8;
 
             return View(await PaginatedList<Board>.CreateAsync(boards, pageNumber ?? 1, pageSize));
         }
-        #endregion
 
-        #region Leje af board side
         public IActionResult Rent(Guid? id)
         {
             if (id == null || _context.Board == null)
@@ -72,7 +72,6 @@ namespace SurfsUp.Controllers
 
             return View();
         }
-        #endregion
 
         //
         // Need to be done (Krav-5)
