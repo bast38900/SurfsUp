@@ -54,8 +54,8 @@ namespace SurfsUp.Models
                 context.Board.AddRange(
                     new Board
                     {
-                        BoardName = "The Minilog",
-                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/S/NSP04COFSSURVC604CS_78695.jpg",
+                        BoardName = "Minilog",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/S/NSFT0901_100799.jpg",
                         Length = 6,
                         Width = 21,
                         Thickness = 2.75,
@@ -67,7 +67,7 @@ namespace SurfsUp.Models
 
                     new Board
                     {
-                        BoardName = "The Wide Glider",
+                        BoardName = "Wide Glider",
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/S/U/SUP1-0HH400_66254.jpg",
                         Length = 7.1,
                         Width = 21.75,
@@ -80,7 +80,7 @@ namespace SurfsUp.Models
 
                     new Board
                     {
-                        BoardName = "The Golden Ratio",
+                        BoardName = "Golden Ratio",
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/2/0/2005210101003_82988.jpg",
                         Length = 6.3,
                         Width = 21.85,
@@ -106,8 +106,8 @@ namespace SurfsUp.Models
 
                     new Board
                     {
-                        BoardName = "The Emerald Glider",
-                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0607_77330.jpg",
+                        BoardName = "Emerald Glider",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/S/NSPT0927_114853.jpg",
                         Length = 9.2,
                         Width = 22.8,
                         Thickness = 2.8,
@@ -119,7 +119,7 @@ namespace SurfsUp.Models
 
 					new Board
 					{
-						BoardName = "The Bomb",
+						BoardName = "Bomb",
                         Picture = "https://www.oneopensky.dk/img/310/300/resize/H/S/HSFF-HK0602-FCB_112990.jpg",
                         Length = 5.5,
 						Width = 21,
@@ -133,7 +133,7 @@ namespace SurfsUp.Models
 					new Board
 					{
 						BoardName = "Walden Magic",
-                        Picture = "https://www.oneopensky.dk/img/310/300/resize/N/U/NUU0606_77327.jpg",
+                        Picture = "https://www.oneopensky.dk/img/310/300/resize/J/9/J9UB01PROM226X0_82575.jpg",
                         Length = 9.6,
 						Width = 19.4,
 						Thickness = 3,
