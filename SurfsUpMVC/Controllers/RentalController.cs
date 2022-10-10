@@ -4,6 +4,9 @@ using SurfsUp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using SurfsUpMVC.Models;
 
 namespace SurfsUp.Controllers
 {
@@ -74,13 +77,28 @@ namespace SurfsUp.Controllers
         }
 
         //
-        // Need to be done (Krav-5)
+        // Done
         //
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent()
+        public async Task<ActionResult> Rent([FromRoute] Guid id, [FromForm] DateTime EndRent)
         {
-            return null;
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
+            string Uri = "/api/RentBoard";
+
+            RentDto rentDto = new RentDto()
+            {
+                BoardId = id,
+                UserId = userId,
+                EndRent = EndRent
+            };
+
+            var post = await client.PostAsJsonAsync(Uri, rentDto);
+            post.EnsureSuccessStatusCode();
+
+            return RedirectToAction("Store");
         }
     }
 }

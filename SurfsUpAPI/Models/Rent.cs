@@ -9,8 +9,8 @@ namespace SurfsUpAPI.Models
 
     public class Rent
     {
-        public Guid RentId { get; set; }
-        public Guid UserId { get; set; }
+        public Guid? RentId { get; set; }
+        public Guid? UserId { get; set; }
         public DateTime StartRent { get; set; }
         public DateTime EndRent { get; set; }
         public decimal Total { get; set; }
