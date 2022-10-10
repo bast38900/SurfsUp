@@ -55,31 +55,36 @@ namespace SurfsUpAPI.Controllers
         [Route("RentBoard")]
         public async Task<ActionResult> RentBoard([FromBody] RentDto rentDto)
         {
-            var boards = await _appDbContext.Board.ToListAsync();
-
-            foreach (var board in boards)
+            try
             {
-                if (board.BoardId == rentDto.BoardId)
+                var boards = await _appDbContext.Board.ToListAsync();
+
+                Rent rent = new Rent();
+
+                foreach (var board in boards)
                 {
-                    Rent rent = new Rent()
+                    if (board.BoardId == rentDto.BoardId)
                     {
-                        StartRent = DateTime.Now,
-                        EndRent = rentDto.EndRent,
-                        RentState = RentState.RentedOut,
-                        Board = board,
-                        Total = board.Price,
-                        UserId = rentDto.UserId
-                    };
-                    board.State = BoardState.Rented;
-
-                    _appDbContext.Add(rent);
-                    await _appDbContext.SaveChangesAsync();
-
-                    return Ok(rent);
+                        rent.StartRent = DateTime.Now;
+                        rent.EndRent = rentDto.EndRent;
+                        rent.RentState = RentState.RentedOut;
+                        rent.Board = board;
+                        rent.Total = board.Price;
+                        rent.UserId = rentDto.UserId;
+                        board.State = BoardState.Rented;
+                        break;
+                    }
                 }
-            }
 
-            return BadRequest();
+                _appDbContext.Add(rent);
+                await _appDbContext.SaveChangesAsync();
+
+                return Ok(rent);
+            } 
+            catch (BadHttpRequestException)
+            {
+                return BadRequest();
+            } 
         }
     }
 }
