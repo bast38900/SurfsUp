@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SurfsUpAPI.Data;
 using SurfsUpAPI.Models;
+using System.Linq;
 using System.Security.Claims;
 
 namespace SurfsUpAPI.Controllers
@@ -58,9 +59,13 @@ namespace SurfsUpAPI.Controllers
             try
             {
                 var boards = await _appDbContext.Board.ToListAsync();
+                var existingboard = _appDbContext.Board.FirstOrDefault(t => t.RowVersion.Contains(rentDto.)
 
                 Rent rent = new Rent();
-
+                if (Convert.ToBase64String(existingboard.RowVersion) != Convert.ToBase64String(rent.RowVersion))
+                {
+                    return StatusCode(409); // conflict
+                }
                 foreach (var board in boards)
                 {
                     if (board.BoardId == rentDto.BoardId)
@@ -80,11 +85,11 @@ namespace SurfsUpAPI.Controllers
                 await _appDbContext.SaveChangesAsync();
 
                 return Ok(rent);
-            } 
+            }
             catch (BadHttpRequestException)
             {
                 return BadRequest();
-            } 
+            }
         }
     }
 }
