@@ -1,282 +1,206 @@
-@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
 
 /* ========= GENERAL ========= */
 
-:root {
-    --main-color: #f8d99b;
+html {
+    height: 100%;
+    box-sizing: border-box;
 }
 
-html {
-  font-size: 14px;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
 }
 
 body {
-    margin-bottom: 60px;
-    background-image: linear-gradient(to bottom right, white, #0097e6);
+    position: relative;
+    min-height: 100%;
+    padding-bottom: 6rem;
 }
+
+:root {
+    --light-background: #e3f2fd;
+    --ligt-grey: #f8f9fa;
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+    padding: 0;
+    margin: 0;
+}
+
+.header-text {
+    padding: 50px 0 50px 0;
+    margin-bottom: 30px;
+    background-color: var(--ligt-grey);
+    text-align: center;
+}
+
+    .header-text h1 {
+        font-size: 48px;
+        font-weight: 600;
+        color: #03045e;
+    }
 
 footer {
-    font-family: 'Indie Flower', cursive;
-    background-color: var(--main-color);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 50px 0 50px 0;
+    text-align: center;
+    background-color: var(--light-background);
 }
 
-footer p {
-    margin-top: 15px;
-    color: #000;
-    font-size: 18px;
+    footer p {
+        color: #b0b0b0;
+        font-weight: 400;
+        padding: 0;
+        margin: 0;
+    }
+
+i {
+    padding: 0 5px 0 0;
 }
 
-h1 {
-    font-family: 'Indie Flower', cursive;
+.social {
+    padding: 10px 0 30px 0;
 }
 
+.or-line {
+    text-align: center;
+    border-bottom: 1px solid #000;
+    line-height: 0.1em;
+    margin: 10px 0 30px;
+}
+
+.or-line span {
+    background: #fff;
+    padding: 0 10px;
+}
+
+#forgot-password {
+    color: #000000;
+}
 /* ========= Buttons ========= */
-
-.Create_bt {
-    color: #0097e6;
+.btn-primary {
+    color: #fff;
+    background-color: #0d47a1;
+    border-color: #0d47a1;
 }
 
-.Funtion_bt {
-    color:white;
-}
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #0a3577;
+        border-color: #0a3577;
+    }
+
+    .btn-check:focus + .btn-primary, .btn-primary:focus {
+        color: #fff;
+        background-color: #0a3577;
+        border-color: #0a3577;
+        box-shadow: 0 0 0 0.25rem rgba(10, 53, 119, 0.5);
+    }
+
+    .btn-primary:disabled, .btn-primary.disabled {
+        color: #fff;
+        background-color: #2b4a77;
+        border-color: #2b4a77;
+    }
 
 /* ========= NAVBAR ========= */
 
-nav {
-    background-color: var(--main-color);
+.navbar {
+    background-color: var(--light-background);
+    padding: 25px 0 25px 0;
 }
 
-.navbar-nav {
-    margin: 20px 0 20px 0;
-}
-
-.navbar-brand {
-    font-family: 'Indie Flower', cursive;
-    font-size: 32px;
-    font-weight: 700;
+.navbar-brand img {
+    height: 60px;
 }
 
 .nav-link {
-    font-family: 'Indie Flower', cursive;
-    font-size: 28px;
-    margin: 0 10px 0 10px;
+    font-size: 18px;
 }
 
 /* ========= SHOP ========= */
 
-.shop {
-    margin: 40px 0 40px 0;
+.store-actions {
     display: flex;
     flex-direction: row;
-    align-content: center;
-    justify-content: center;
+    justify-content: space-between;
+    margin-bottom: 40px;
 }
 
-    .shop-header {
-        margin: 50px 0 0 0;
-        font-family: 'Indie Flower', cursive;
-        font-weight: 700;
+    .storeSearchBox {
+        display: flex;
+        gap: 15px;
     }
 
-.shop .card {
-    margin: 10px 0 10px 0;
-    border-width: 0;
-}
-
-.pagination-buttons {
-    margin: 10px 0 0 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-
-/* ========= PRODUCT ========= */
-.page-title {
-    font-family: 'Indie Flower', cursive;
-    text-align: center;
-    margin: 50px 0 50px 0;
-}
-
-    .page-title h1 {
-        font-weight: 700;
+    .storeSearchInput {
+        display: flex;
+        gap: 15px;
     }
 
 
+    .pagination-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+    }
+
+.card {
+    border-width: 3px;
+    border-radius: 10px;
+}
+
+    .card .title {
+        font-weight: 600;
+    }
+
+    .card .type {
+        padding: 12px 0 15px 0;
+        font-weight: 400;
+        color: #868686;
+    }
+
+    .title-price {
+        display: flex;
+        justify-content: space-between;
+    }
+
+        .title-price p {
+            font-weight: 500;
+            height: 20px;
+            border-bottom: 4px solid rgba(21, 105, 231, 0.3);
+        }
+/* ========= BOARDS ========= */
 .actions {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    margin: 0 0 30px 0;
 }
 
-.searchField {
+.action-buttons {
     display: flex;
     flex-direction: row;
+    gap: 5px;
 }
 
-.searchInput {
-    display: flex;
-    flex-direction: row;
-}
-
-.searchInput button {
-    margin-left: 5px;
-}
-
-
-.product-list {
-    margin: 20px 0 30px 0;
-}
-
-
-.product-grid {
-    font-family: 'Work Sans', sans-serif;
-    border: 1px solid #ebebeb;
-    border-radius: 10px;
-    overflow: hidden;
-    transition: all 0.5s;
-    margin-top: 10px;
-}
-
-    .product-grid:hover {
-        border-color: #000;
+    .searchBox {
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
     }
 
-    .product-grid .product-image {
-        position: relative;
+    .searchInput {
+        display: flex;
+        gap: 10px;
     }
-
-        .product-grid .product-image img {
-            height: 300px;
-            width: contain;
-        }
-
-    .product-grid .product-sale-label {
-        color: #fff;
-        background: #83b71c;
-        font-size: 12px;
-        font-weight: 500;
-        text-transform: uppercase;
-        padding: 2px 7px;
-        border-radius: 5px;
-        transform: skew(-18deg);
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        transition: all 0.3s;
-    }
-
-    .product-grid .social {
-        padding: 0;
-        margin: 0;
-        list-style: none;
-        opacity: 0;
-        position: absolute;
-        top: -20px;
-        right: 10px;
-        transition: .4s ease-in-out;
-    }
-
-    .product-grid:hover .social {
-        opacity: 1;
-        top: 15px;
-    }
-
-    .product-grid .social li a {
-        color: black;
-        background: #fff;
-        font-size: 16px;
-        text-align:center;
-        line-height: 60px;
-        height: 60px;
-        width: 60px;
-        margin: 0 0 10px;
-        border-radius: 50%;
-        display: block;
-        position: relative;
-        transition: .4s ease-in-out;
-    }
-
-        .product-grid .social li a:hover {
-            color: black;
-            background: var(--main-color);
-        }
-
-        .product-grid .social li a:before,
-        .product-grid .social li a:after {
-            content: attr(data-tip);
-            color: #fff;
-            background: #444;
-            font-size: 12px;
-            line-height: 20px;
-            padding: 5px 10px;
-            white-space: nowrap;
-            display: none;
-            transform: translateY(-50%);
-            position: absolute;
-            right: 53px;
-            top: 50%;
-        }
-
-        .product-grid .social li a:after {
-            content: '';
-            height: 15px;
-            width: 15px;
-            padding: 0;
-            transform: translateY(-50%) rotate(45deg);
-            right: 50px;
-            z-index: -1;
-        }
-
-    .product-grid .product-content {
-        padding: 15px 10px;
-        position: relative;
-        background-color: #fff;
-    }
-
-    .product-grid .product-category {
-        font-size: 14px;
-        margin-bottom: 5px;
-        display: block;
-    }
-
-        .product-grid .product-category a {
-            color: #999;
-            transition: all .4s ease 0s;
-        }
-
-    .product-grid .title {
-        font-size: 18px;
-        text-transform: capitalize;
-        margin: 0 0 7px;
-        display: block;
-    }
-
-        .product-grid .title a {
-            color: #444;
-            transition: all .4s ease 0s;
-        }
-
-    .product-grid .price {
-        color: black;
-        font-size: 18px;
-        font-weight: 600;
-        opacity: 1;
-        transition: .3s ease;
-    }
-
-    .product-grid p {
-        margin: 5px 0 0 0;
-    }
-
-    @media only screen and (max-width:990px) {
-        .product-grid {
-        margin-bottom: 30px;
-    }
-}
 

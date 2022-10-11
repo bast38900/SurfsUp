@@ -4,30 +4,35 @@ using SurfsUp.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
+using System.Security.Claims;
+using Microsoft.EntityFrameworkCore;
+using SurfsUpMVC.Models;
 
 namespace SurfsUp.Controllers
 {
     [AllowAnonymous]
-    public class RentController : Controller
+    public class RentalController : Controller
     {
         private readonly SurfsUpContext _context;
 
         private readonly UserManager<AppUser> _userManager;
 
-        public RentController(UserManager<AppUser> userManager, SurfsUpContext surfsUpContext)
+        public RentalController(UserManager<AppUser> userManager, SurfsUpContext surfsUpContext)
         {
             _userManager = userManager;
             _context = surfsUpContext;
         }
 
-        #region Forside
         public IActionResult Index()
         {
             return View();
         }
-        #endregion
 
-        #region Butiksside
+        public IActionResult MyRents()
+        {
+            return View();
+        }
+
         // GET: Boards
         public async Task<IActionResult> Store(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
@@ -56,13 +61,11 @@ namespace SurfsUp.Controllers
                 searchString = currentFilter;
             }
 
-            int pageSize = 4;
+            int pageSize = 8;
 
             return View(await PaginatedList<Board>.CreateAsync(boards, pageNumber ?? 1, pageSize));
         }
-        #endregion
 
-        #region Leje af board side
         public IActionResult Rent(Guid? id)
         {
             if (id == null || _context.Board == null)
@@ -72,16 +75,30 @@ namespace SurfsUp.Controllers
 
             return View();
         }
-        #endregion
 
         //
-        // Need to be done (Krav-5)
+        // Done
         //
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Rent()
+        public async Task<ActionResult> Rent([FromRoute] Guid id, [FromForm] DateTime EndRent)
         {
-            return null;
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+
+            using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
+            string Uri = "/api/RentBoard";
+
+            RentDto rentDto = new RentDto()
+            {
+                BoardId = id,
+                UserId = userId,
+                EndRent = EndRent
+            };
+
+            var post = await client.PostAsJsonAsync(Uri, rentDto);
+            post.EnsureSuccessStatusCode();
+
+            return RedirectToAction("Store");
         }
     }
 }

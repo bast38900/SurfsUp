@@ -16,10 +16,10 @@ namespace SurfsUpAPI.Controllers
         {
             _appDbContext = appDbContext;
         }
-        
+
         [HttpGet]
         [Route("AvailableBoards")]
-        public async Task<ActionResult> GetAllAvailableBoards()
+        public async Task<IActionResult> GetAllAvailableBoards()
         {
             var boards = await _appDbContext.Board.ToListAsync();
             var rentals = await _appDbContext.Rent.ToListAsync();
@@ -52,23 +52,25 @@ namespace SurfsUpAPI.Controllers
         }
 
         [HttpPost]
-        [Route("RentBoard/{boardId:guid}")]
-        public async Task<ActionResult> RentBoard([FromRoute] Guid boardId, [FromBody] Rent rent)
+        [Route("RentBoard")]
+        public async Task<ActionResult> RentBoard([FromBody] RentDto rentDto)
         {
-            var boards = await _appDbContext.Board.ToListAsync();
-            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            if (ModelState.IsValid)
+            try
             {
+                var boards = await _appDbContext.Board.ToListAsync();
+
+                Rent rent = new Rent();
+
                 foreach (var board in boards)
                 {
-                    if (boardId == board.BoardId)
+                    if (board.BoardId == rentDto.BoardId)
                     {
-                        rent.Board = board;
                         rent.StartRent = DateTime.Now;
-                        rent.Total = board.Price;
+                        rent.EndRent = rentDto.EndRent;
                         rent.RentState = RentState.RentedOut;
-                        rent.UserId = Guid.Parse(userId);
+                        rent.Board = board;
+                        rent.Total = board.Price;
+                        rent.UserId = rentDto.UserId;
                         board.State = BoardState.Rented;
                         break;
                     }
@@ -76,11 +78,13 @@ namespace SurfsUpAPI.Controllers
 
                 _appDbContext.Add(rent);
                 await _appDbContext.SaveChangesAsync();
-                
-                return StatusCode(201);
-            }
 
-            return BadRequest();
+                return Ok(rent);
+            } 
+            catch (BadHttpRequestException)
+            {
+                return BadRequest();
+            } 
         }
     }
 }

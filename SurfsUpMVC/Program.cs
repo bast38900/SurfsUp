@@ -23,14 +23,7 @@ builder.Services.AddDefaultIdentity<AppUser>(options => options.SignIn.RequireCo
     .AddEntityFrameworkStores<IdentitySurfsUpContext>();
 
 //Add Authorization as a service
-builder.Services.AddAuthorization(options =>
-{
-    options.FallbackPolicy = new AuthorizationPolicyBuilder()
-
-
-        .RequireAuthenticatedUser()
-        .Build();
-});
+builder.Services.AddAuthorization(options => {});
 
 var services = builder.Services;
 
@@ -94,7 +87,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Rent}/{action=Index}/{id?}");
+    pattern: "{controller=Rental}/{action=Index}/{id?}");
 
 app.MapRazorPages();
 
