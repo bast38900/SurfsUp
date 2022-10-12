@@ -7,8 +7,10 @@ using System.Security.Claims;
 
 namespace SurfsUpAPI.Controllers
 {
-    [Route("api")]
+    [Route("api/v{version:apiVersion}")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [ApiVersion("2.0")]
     public class RentController : ControllerBase
     {
         private readonly AppDbContext _appDbContext;
@@ -18,8 +20,9 @@ namespace SurfsUpAPI.Controllers
         }
 
         [HttpGet]
+        [MapToApiVersion("1.0")]
         [Route("AvailableBoards")]
-        public async Task<IActionResult> GetAllAvailableBoards()
+        public async Task<IActionResult> GetAllAvailableBoardsV1()
         {
             var boards = await _appDbContext.Board.ToListAsync();
             var rentals = await _appDbContext.Rent.ToListAsync();
@@ -51,7 +54,47 @@ namespace SurfsUpAPI.Controllers
             return Ok(availableBoards);
         }
 
+        [HttpGet]
+        [MapToApiVersion("2.0")]
+        [Route("AvailableBoards")]
+        public async Task<IActionResult> GetAllAvailableBoardsV2()
+        {
+            var boards = await _appDbContext.Board.ToListAsync();
+            var rentals = await _appDbContext.Rent.ToListAsync();
+
+            List<Board> availableBoards = new();
+
+            foreach (var board in boards)
+            {
+                if (board.Type == "Shortboard")
+                {
+                    if (board.State == BoardState.Rented)
+                    {
+                        foreach (var rental in rentals)
+                        {
+                            if (rental.EndRent < DateTime.Now && rental.RentState == RentState.RentedOut && board.State == BoardState.Rented)
+                            {
+                                rental.RentState = RentState.RentFinished;
+                                board.State = BoardState.Available;
+                                availableBoards.Add(board);
+                                await _appDbContext.SaveChangesAsync();
+                            }
+                        }
+                    }
+                    else
+                    {
+                        availableBoards.Add(board);
+                        await _appDbContext.SaveChangesAsync();
+                    }
+                }
+            }
+
+            return Ok(availableBoards);
+        }
+
         [HttpPost]
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [Route("RentBoard")]
         public async Task<ActionResult> RentBoard([FromBody] RentDto rentDto)
         {
