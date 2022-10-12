@@ -40,10 +40,9 @@ namespace SurfsUp.Controllers
 
             using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
             string Uri = "/api/v2/AvailableBoards";
-            
             if (User.Identity.IsAuthenticated)
             {
-                Uri = "/api/v1/AvailableBoards";
+                Uri = "/api/v2/AvailableBoards";
             }
 
             using HttpResponseMessage response = await client.GetAsync(Uri);

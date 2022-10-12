@@ -20,6 +20,7 @@ namespace SurfsUpAPI.Controllers
         }
 
         [HttpGet]
+        [MapToApiVersion("1.0")]
         [Route("AvailableBoards")]
         public async Task<IActionResult> GetAllAvailableBoardsV1()
         {
@@ -92,6 +93,8 @@ namespace SurfsUpAPI.Controllers
         }
 
         [HttpPost]
+        [MapToApiVersion("1.0")]
+        [MapToApiVersion("2.0")]
         [Route("RentBoard")]
         public async Task<ActionResult> RentBoard([FromBody] RentDto rentDto)
         {
