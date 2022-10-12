@@ -42,7 +42,7 @@ namespace SurfsUp.Controllers
             string Uri = "/api/v2/AvailableBoards";
             if (User.Identity.IsAuthenticated)
             {
-                Uri = "/api/v2/AvailableBoards";
+                Uri = "/api/v1/AvailableBoards";
             }
 
             using HttpResponseMessage response = await client.GetAsync(Uri);
@@ -87,10 +87,16 @@ namespace SurfsUp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Rent([FromRoute] Guid id, [FromForm] DateTime EndRent)
         {
-            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            Guid userId = new Guid();            
 
             using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
-            string Uri = "/api/RentBoard";
+            
+            string Uri = "/api/v2/RentBoard";
+            if (User.Identity.IsAuthenticated)
+            {
+                Uri = "/api/v1/RentBoard";
+                userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
+            }
 
             RentDto rentDto = new RentDto()
             {
