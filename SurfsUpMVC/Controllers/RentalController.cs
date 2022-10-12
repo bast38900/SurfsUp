@@ -39,11 +39,7 @@ namespace SurfsUp.Controllers
             ViewData["CurrentSort"] = sortOrder;
 
             using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
-            string Uri = "/api/v2/AvailableBoards";
-            if (User.Identity.IsAuthenticated)
-            {
-                Uri = "/api/v1/AvailableBoards";
-            }
+            string Uri = "/api/AvailableBoards";
 
             using HttpResponseMessage response = await client.GetAsync(Uri);
             var jsonResponse = await response.Content.ReadAsStringAsync();
@@ -87,16 +83,10 @@ namespace SurfsUp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Rent([FromRoute] Guid id, [FromForm] DateTime EndRent)
         {
-            Guid userId = new Guid();            
+            Guid userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
-            
-            string Uri = "/api/v2/RentBoard";
-            if (User.Identity.IsAuthenticated)
-            {
-                Uri = "/api/v1/RentBoard";
-                userId = Guid.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
-            }
+            string Uri = "/api/RentBoard";
 
             RentDto rentDto = new RentDto()
             {
