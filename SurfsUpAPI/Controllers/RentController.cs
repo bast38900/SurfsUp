@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 using SurfsUpAPI.Data;
 using SurfsUpAPI.Models;
+using System.Data;
 using System.Linq;
 using System.Security.Claims;
 
@@ -58,14 +60,19 @@ namespace SurfsUpAPI.Controllers
         {
             try
             {
-                var boards = await _appDbContext.Board.ToListAsync();
-                var existingboard = _appDbContext.Board.FirstOrDefault(t => t.RowVersion.Contains(rentDto.)
 
-                Rent rent = new Rent();
-                if (Convert.ToBase64String(existingboard.RowVersion) != Convert.ToBase64String(rent.RowVersion))
+                var boards = await _appDbContext.Board.ToListAsync();
+                Board board1 = new Board();
+                var existingboard = _appDbContext.Board.Find(1);
+
+                //var existingboard = _appDbContext.Board.FirstOrDefault(t => t.RowVersion()
+
+
+                if (Convert.ToBase64String(existingboard.RowVersion) != Convert.ToBase64String(board1.RowVersion))
                 {
                     return StatusCode(409); // conflict
                 }
+                Rent rent = new Rent();
                 foreach (var board in boards)
                 {
                     if (board.BoardId == rentDto.BoardId)
