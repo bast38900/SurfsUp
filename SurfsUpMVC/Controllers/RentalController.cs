@@ -5,8 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Security.Claims;
-using Microsoft.EntityFrameworkCore;
-using SurfsUpMVC.Models;
+using SurfsUpLibrary.Models;
 
 namespace SurfsUp.Controllers
 {

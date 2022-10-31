@@ -1,16 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SurfsUpAPI.Models
+namespace SurfsUpLibrary.Models
 {
+
     public enum RentState
     {
-        RentedOut, RentFinished
+       RentedOut, RentFinished
     }
 
     public class Rent
     {
-        public Guid? RentId { get; set; }
-        public Guid? UserId { get; set; }
+        public Guid RentId { get; set; }
+        public Guid UserId { get; set; }
         public DateTime StartRent { get; set; }
         public DateTime EndRent { get; set; }
         public decimal Total { get; set; }

@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SurfsUpLibrary.Models;
 using SurfsUpAPI.Data;
-using SurfsUpAPI.Models;
-using System.Security.Claims;
 
 namespace SurfsUpAPI.Controllers
 {
