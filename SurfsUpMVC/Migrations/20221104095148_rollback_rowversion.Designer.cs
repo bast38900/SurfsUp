@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SurfsUp.Data;
 
@@ -11,9 +12,10 @@ using SurfsUp.Data;
 namespace SurfsUpMVC.Migrations
 {
     [DbContext(typeof(SurfsUpContext))]
-    partial class SurfsUpContextModelSnapshot : ModelSnapshot
+    [Migration("20221104095148_rollback_rowversion")]
+    partial class rollback_rowversion
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

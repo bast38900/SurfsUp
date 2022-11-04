@@ -16,7 +16,6 @@ namespace SurfsUpLibrary.Models
         public DateTime EndRent { get; set; }
         public decimal Total { get; set; }
         public RentState RentState { get; set; }
-        public byte[] RowVersion { get; set; }
 
         [ForeignKey("BoardId")]
         public Board Board { get; set; }
