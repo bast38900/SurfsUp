@@ -22,4 +22,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\SurfsUpLibrary\SurfsUpLibrary.csproj" />
+  </ItemGroup>
+
 </Project>

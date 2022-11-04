@@ -1,4 +1,4 @@
-﻿namespace SurfsUpAPI.Models
+﻿namespace SurfsUpLibrary.Models
 {
     public class RentDto
     {

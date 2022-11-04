@@ -1,6 +1,5 @@
-﻿using SurfsUpAPI.Models;
+﻿using SurfsUpLibrary.Models;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Infrastructure.Internal;
 
 namespace SurfsUpAPI.Data
 

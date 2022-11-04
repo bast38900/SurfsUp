@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
+using SurfsUpLibrary.Models;
 
 namespace SurfsUp.Models
-
 {
 
     public static class SeedData

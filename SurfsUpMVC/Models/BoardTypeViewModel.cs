@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using System.Collections.Generic;
+using SurfsUpLibrary.Models;
 
 namespace SurfsUp.Models
 {
