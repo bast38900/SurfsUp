@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SurfsUp.Data;
 using SurfsUp.Models;
+using SurfsUpMVC.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<SurfsUpContext>(options =>
@@ -84,6 +85,9 @@ app.UseRouting();
 app.UseAuthentication();
 
 app.UseAuthorization();
+
+// Ip rate limiter middleware
+app.UseIpRateLimiter();
 
 app.MapControllerRoute(
     name: "default",
