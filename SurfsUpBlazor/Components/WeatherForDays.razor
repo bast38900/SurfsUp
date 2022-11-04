@@ -1,0 +1,52 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using SurfsUpLibrary.WeatherDTO
+@inject HttpClient Http
+
+@if (OpenWeatherRoot == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Weather</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in OpenWeatherRoot.list)
+            {
+                <tr>
+                    <td>
+                        @forecast.dt_txt
+                    </td>
+                    <td>@forecast.weather.First().main</td>
+                    <td>@forecast.weather.First().description</td>
+                    <td>
+                        @{
+                            string @uri = "https://openweathermap.org/img/wn/" + forecast.weather.First().icon + "@2x.png";
+                            <img src="@uri" alt="Weather Icon not found " />
+                        }
+                    </td>
+                    </tr>
+
+                }
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Root OpenWeatherRoot;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Http.BaseAddress = new Uri("https://localhost:7011");
+        OpenWeatherRoot = await Http.GetFromJsonAsync<Root>("WeatherForecast");
+    }
+}
