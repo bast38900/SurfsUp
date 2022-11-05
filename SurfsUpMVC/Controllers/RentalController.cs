@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using SurfsUpLibrary.Models;
+using System.Net;
 
 namespace SurfsUp.Controllers
 {

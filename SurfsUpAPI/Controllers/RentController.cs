@@ -126,7 +126,7 @@ namespace SurfsUpAPI.Controllers
                 _appDbContext.Add(rent);
                 await _appDbContext.SaveChangesAsync();
 
-                return Ok(rent);
+                return Ok();
             } 
             catch (BadHttpRequestException)
             {

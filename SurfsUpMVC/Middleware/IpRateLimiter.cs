@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol;
 using System.Net;
 
 namespace SurfsUpMVC.Middleware
@@ -9,7 +10,7 @@ namespace SurfsUpMVC.Middleware
     {
         private readonly RequestDelegate _next;
         private Dictionary<IPAddress, List<DateTime>> _loggedRequest;
-        private int _rentLimit = 1;
+        private int _rentLimit = 2;
         private TimeSpan _limitedTime = new TimeSpan(0,3,0);
 
         public IpRateLimiter(RequestDelegate next)
@@ -22,7 +23,7 @@ namespace SurfsUpMVC.Middleware
         {
             string path = context.Request.Path;
 
-            if (path.StartsWith("/Rental/Rent/"))
+            if (path.StartsWith("/Rental/Rent/") && context.Request.HasFormContentType)
             {
                 if (!context.User.Identity.IsAuthenticated)
                 {
