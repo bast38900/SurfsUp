@@ -2,9 +2,8 @@
 @using System.Net.Http.Json
 @using SurfsUpLibrary.WeatherDTO
 @using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.DropDowns
 @inject HttpClient Http
-
-
 
 @if (OpenWeatherRoot == null)
 {
@@ -48,9 +47,19 @@ else
 @code {
     private Root OpenWeatherRoot;
 
+    public List<DateTime> Days { get; set; } 
+
     protected override async Task OnInitializedAsync()
     {
         Http.BaseAddress = new Uri("https://localhost:7011");
         OpenWeatherRoot = await Http.GetFromJsonAsync<Root>("WeatherForecast");
+        foreach (var Day in OpenWeatherRoot.list)
+        {
+            // converter to datetime
+            // Day.dt_txt 
+            DateTime targetday = DateTime.Parse(Day.dt_txt);
+            //Put in list
+            Days.Add(targetday);
+        }
     }
 }
