@@ -1,6 +1,7 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
 @using SurfsUpLibrary.WeatherDTO
+@using Syncfusion.Blazor.Inputs
 @inject HttpClient Http
 
 @if (OpenWeatherRoot == null)
@@ -9,6 +10,7 @@
 }
 else
 {
+    
     <table class="table">
         <thead>
             <tr>
