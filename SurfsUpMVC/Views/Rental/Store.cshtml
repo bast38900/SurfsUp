@@ -3,11 +3,11 @@
 @{
     var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
     var nextDisabled = !Model.HasNextPage ? "disabled" : "";
-    ViewData["Title"] = "Store";
+    ViewData["Title"] = "Rent a board";
 }
 
 <section class="header-text">
-    <h1>Rent a board</h1>
+    <h1>@ViewData["Title"]</h1>
 </section>
 
 <div class="container mt-5 mb-5">
