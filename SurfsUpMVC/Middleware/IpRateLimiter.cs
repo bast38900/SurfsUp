@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using NuGet.Protocol;
 using System.Net;
 
 namespace SurfsUpMVC.Middleware
@@ -9,7 +12,7 @@ namespace SurfsUpMVC.Middleware
     {
         private readonly RequestDelegate _next;
         private Dictionary<IPAddress, List<DateTime>> _loggedRequest;
-        private int _rentLimit = 1;
+        private int _rentLimit = 3;
         private TimeSpan _limitedTime = new TimeSpan(0,3,0);
 
         public IpRateLimiter(RequestDelegate next)
@@ -22,7 +25,7 @@ namespace SurfsUpMVC.Middleware
         {
             string path = context.Request.Path;
 
-            if (path.StartsWith("/Rental/Rent/"))
+            if (path.StartsWith("/Rental/Rent/") /*&& context.Request.HasFormContentType*/)
             {
                 if (!context.User.Identity.IsAuthenticated)
                 {
@@ -53,7 +56,17 @@ namespace SurfsUpMVC.Middleware
 
         private void Block(HttpContext context)
         {
-            context.Response.WriteAsync("Blocked");
+            //ITempDataDictionaryFactory? factory = context.RequestServices.GetService(typeof(ITempDataDictionaryFactory)) as ITempDataDictionaryFactory;
+            //ITempDataDictionary tempData = factory.GetTempData(context);
+
+            //tempData["Message"] = "Registrer konto for at leje mere end 1 board.";
+
+            //context.Items.Add("RentMessage", "Registrer konto for at leje mere end 1 board");
+            //context.Response.Headers.Add("RentMessage", "Registrer konto for at leje mere end 1 board");
+
+            string route = "/Rental/CantRentMore";
+            
+            context.Response.Redirect(route);
         }
 
         private void LogRequest(IPAddress ip, DateTime dateTime)

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Newtonsoft.Json;
 using System.Security.Claims;
 using SurfsUpLibrary.Models;
+using System.Net;
 
 namespace SurfsUp.Controllers
 {
@@ -35,6 +36,10 @@ namespace SurfsUp.Controllers
         // GET: Boards
         public async Task<IActionResult> Store(string sortOrder, string currentFilter, string searchString, int? pageNumber)
         {
+            string message = TempData["Message"] as string;
+            if (!string.IsNullOrEmpty(message))
+                ViewBag.Message = message;
+
             ViewData["CurrentSort"] = sortOrder;
 
             using HttpClient client = new() { BaseAddress = new Uri("https://localhost:7009") };
@@ -67,6 +72,11 @@ namespace SurfsUp.Controllers
             int pageSize = 8;
 
             return View(await PaginatedList<Board>.CreateAsync(boards, pageNumber ?? 1, pageSize));
+        }
+
+        public IActionResult CantRentMore()
+        {
+            return View();
         }
 
         public IActionResult Rent(Guid? id)

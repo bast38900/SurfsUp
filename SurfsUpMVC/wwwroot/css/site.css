@@ -204,3 +204,21 @@ i {
         gap: 10px;
     }
 
+/* ========= ERRORPAGE ========= */
+.ErrorPage {
+    height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+    .ErrorPage .ErrorContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+        .ErrorContent .ErrorButton {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0 20px 0;
+        }
