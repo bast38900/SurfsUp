@@ -2,15 +2,14 @@
 @using System.Net.Http.Json
 @using Syncfusion.Blazor.Inputs
 @using SurfsUpLibrary.Models
-@inject IModalService modal
 @inject HttpClient Http
 
-@if (boards == null)
+@*@if (boards == null)
 {
-    <p><em>Waiting for awsome boards list...</em></p>
+    <p><em>Loading board</em></p>
 }
 else
-{
+{*@
 
     <table class="table">
         <thead>
@@ -18,30 +17,35 @@ else
                 <th>Picture</th>
                 <th>Boardname</th>
                 <th>Type</th>
+                <th>Length</th>
+                <th>Width</th>
+                <th>Thickness</th>
+                <th>Volume</th>
+                <th>Equipment</th>
                 <th>Price</th>
+                <th>Available</th>
                 <th></th>
             </tr>
         </thead>
-        <tbody>
+@*        <tbody>
             @foreach (var board in boards)
             {
                 <tr>
                     <td>
-                        <img src="@board.Picture" height="150"/>                        
+                        <img src="@board.Picture" height="250" />
                     </td>
                     <td>@board.BoardName</td>
                     <td>@board.Type</td>
                     <td>@board.Price</td>
                     <td>
-                        <button @onclick="@(()=>modal.Show<BoardsDetail>("Boards Detail"))" class="btn btn-primary">Details</button>
-                            <BlazoredModal Size="ModalSize.Automatic"></BlazoredModal>
+                        <button>Rent</button>
                     </td>
                 </tr>
 
             }
-        </tbody>
+        </tbody>*@
     </table>
-}
+@*}
 
 @code {
     private Board[]? boards;
@@ -52,4 +56,4 @@ else
         boards = await Http.GetFromJsonAsync<Board[]>("api/v2/AvailableBoards");
     }
 
-}
+}*@
