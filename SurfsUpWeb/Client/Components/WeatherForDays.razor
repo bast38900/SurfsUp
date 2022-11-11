@@ -1,0 +1,84 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using SurfsUpLibrary.WeatherDTO
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Inputs
+@using Syncfusion.Blazor.DropDowns
+@inject HttpClient Http
+
+<SfDropDownList TValue="int?" TItem="int" Placeholder="Select a day" DataSource="@Days" @bind-Value="targetDay">
+  <DropDownListFieldSettings Text="Day"></DropDownListFieldSettings>
+</SfDropDownList>
+
+@if (desiredDays == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Weather</th>
+                <th>Description</th>
+                <th>Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var forecast in desiredDays.list)
+            {
+                <tr>
+                    <td>@forecast.dt_txt</td>
+                    <td>@forecast.weather.First().main</td>
+                    <td>@forecast.weather.First().description</td>
+                    <td>
+                        @{
+                            string @uri = "https://openweathermap.org/img/wn/" + forecast.weather.First().icon + "@2x.png";
+                            <img src="@uri" alt="Weather Icon not found " />
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Root OpenWeatherRoot;
+
+    private Root desiredDays;
+
+    public List<DateTime> DaysAndTimes { get; set; } = new();
+    public List<int> Days = new();
+
+    [Parameter]
+    public int? targetDay { get; set; } = null;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Http.BaseAddress = new Uri("https://localhost:7011");
+        OpenWeatherRoot = await Http.GetFromJsonAsync<Root>("WeatherForecast");
+        foreach (var Day in OpenWeatherRoot.list)
+        {
+            DaysAndTimes.Add(DateTime.Parse(Day.dt_txt));
+        }
+        Days = DaysAndTimes.Select(x => x.Day).Distinct().ToList();
+    }
+
+    protected override Task OnParametersSetAsync()
+    {
+        //desiredDays = OpenWeatherRoot;
+        //if (targetDay != null || targetDay != 0)
+        //{
+        //    string targetString = 1 == targetDay.ToString().Count() ? "0" + targetDay.ToString() : targetDay.ToString();
+        //    desiredDays.list.Select(x => 
+        //        x.dt_txt[6].Equals(targetString[0]) && 
+        //        x.dt_txt[7].Equals(targetString[1])
+        //    );
+        //}
+
+        return base.OnParametersSetAsync();
+    }
+}

@@ -1,0 +1,59 @@
+﻿@using System.Net.Http
+@using System.Net.Http.Json
+@using Syncfusion.Blazor.Inputs
+@using SurfsUpLibrary.Models
+@inject HttpClient Http
+
+@*@if (boards == null)
+{
+    <p><em>Loading board</em></p>
+}
+else
+{*@
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Picture</th>
+                <th>Boardname</th>
+                <th>Type</th>
+                <th>Length</th>
+                <th>Width</th>
+                <th>Thickness</th>
+                <th>Volume</th>
+                <th>Equipment</th>
+                <th>Price</th>
+                <th>Available</th>
+                <th></th>
+            </tr>
+        </thead>
+@*        <tbody>
+            @foreach (var board in boards)
+            {
+                <tr>
+                    <td>
+                        <img src="@board.Picture" height="250" />
+                    </td>
+                    <td>@board.BoardName</td>
+                    <td>@board.Type</td>
+                    <td>@board.Price</td>
+                    <td>
+                        <button>Rent</button>
+                    </td>
+                </tr>
+
+            }
+        </tbody>*@
+    </table>
+@*}
+
+@code {
+    private Board[]? boards;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Http.BaseAddress = new Uri("https://localhost:7009");
+        boards = await Http.GetFromJsonAsync<Board[]>("api/v2/AvailableBoards");
+    }
+
+}*@
