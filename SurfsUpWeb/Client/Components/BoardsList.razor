@@ -45,20 +45,22 @@ else
 }
 
 @code {
-    private Board[]? boards;
+    private List<Board>? boards;
 
     protected override async Task OnInitializedAsync()
     {
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
 
-        if (user != null && user.IsAuthenticated)
+        if (user.IsAuthenticated)
         {
             Http.BaseAddress = new Uri("https://localhost:7009");
-            boards = await Http.GetFromJsonAsync<Board[]>("api/v1/AvailableBoards");
+            boards = await Http.GetFromJsonAsync<List<Board>>("api/v1/AvailableBoards");
         }
         else
+        {
             Http.BaseAddress = new Uri("https://localhost:7009");
-            boards = await Http.GetFromJsonAsync<Board[]>("api/v2/AvailableBoards");
+            boards = await Http.GetFromJsonAsync<List<Board>>("api/v2/AvailableBoards");
+        }
     }
 
 }
