@@ -4,6 +4,6 @@
     {
         public Guid UserId { get; set; }
         public Guid BoardId { get; set; }
-        public DateTime EndRent { get; set; }
+        public DateTime EndRent { get; set; } = DateTime.Now;
     }
 }

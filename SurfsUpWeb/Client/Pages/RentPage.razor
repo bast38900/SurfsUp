@@ -1,0 +1,12 @@
+﻿@page "/rent/{BoardId}"
+@using SurfsUpLibrary.Models
+@using SurfsUpWeb.Client.Components
+
+<h1>Rent</h1>
+
+<RentForm BoardId="@BoardId"></RentForm>
+
+@code {
+    [Parameter]
+    public string? BoardId { get; set; }
+}

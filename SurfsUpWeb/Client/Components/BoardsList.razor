@@ -6,6 +6,7 @@
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
+
 @if (boards == null)
 {
     <p><em>Waiting for awsome boards list...</em></p>
@@ -36,6 +37,7 @@ else
                     <td>
                         <button @onclick="@(()=>modal.Show<BoardsDetail>("Boards Detail"))" class="btn btn-primary">Details</button>
                             <BlazoredModal Size="ModalSize.Automatic"></BlazoredModal>
+                        <a href="/rent/@board.BoardId" class="btn btn-primary">Rent</a>
                     </td>
                 </tr>
 
