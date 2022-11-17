@@ -34,10 +34,59 @@ else
                     <td>@board.Type</td>
                     <td>@board.Price</td>
                     <td>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#testModal"
+                        @*@onclick="(()=>ViewBoardDetails(board))"*@
+                        >
                             Details
                         </button>
 
+                        <!-- Modal -->
+                        <div class="modal fade" id="testModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-lg">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Board Detail</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th>Boardname</th>
+                                                    <th>Type</th>
+                                                    <th>Length</th>
+                                                    <th>Width</th>
+                                                    <th>Thickness</th>
+                                                    <th>Volume</th>
+                                                    <th>Equipment</th>
+                                                    <th>     </th>
+                                                    <th>     </th>
+                                                    <th>Price</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td>@board.BoardName</td>
+                                                    <td>@board.Type</td>
+                                                    <td>@board.Length</td>
+                                                    <td>@board.Width</td>
+                                                    <td>@board.Thickness</td>
+                                                    <td>@board.Volume</td>
+                                                    <td>@board.Equipment</td>
+                                                    <td></td>
+                                                    <td></td>
+                                                    <td>@board.Price</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <img src="@board.Picture" style="height:100%;max-width:300px"/>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <a href="/rent/@board.BoardId" class="btn btn-primary">Rent</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <a href="/rent/@board.BoardId" class="btn btn-primary">Rent</a>
                     </td>
                 </tr>
@@ -47,10 +96,23 @@ else
     </table>
 }
 
-<BoardModal></BoardModal>
+@*<BoardModal></BoardModal>*@
 
 @code {
     private List<Board>? boards;
+
+    //Board BoardObject = new Board();
+
+    //private Board GetBoard(Guid boardId)
+    //{
+    //    Board boardObj = new Board();
+    //    return boards.FirstOrDefault(u => u.BoardId == boardId);
+    //}
+
+    //void ViewBoardDetails(Board vbObj)
+    //{
+    //    BoardObject = vbObj;
+    //}
 
     protected override async Task OnInitializedAsync()
     {
