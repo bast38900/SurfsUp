@@ -13,9 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherAPI", "WeatherAPI\We
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpBlazor", "SurfsUpBlazor\SurfsUpBlazor.csproj", "{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurfsUpWeb.Server", "SurfsUpWeb\Server\SurfsUpWeb.Server.csproj", "{E767CBE2-4C42-4E33-992B-644BDD316A03}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpWeb.Server", "SurfsUpWeb\Server\SurfsUpWeb.Server.csproj", "{E767CBE2-4C42-4E33-992B-644BDD316A03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SurfsUpWeb.Client", "SurfsUpWeb\Client\SurfsUpWeb.Client.csproj", "{9F654CCD-9ECD-48F2-A062-8329B0D3CA7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpWeb.Client", "SurfsUpWeb\Client\SurfsUpWeb.Client.csproj", "{9F654CCD-9ECD-48F2-A062-8329B0D3CA7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
