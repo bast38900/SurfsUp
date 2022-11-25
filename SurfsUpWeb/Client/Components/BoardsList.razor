@@ -12,7 +12,6 @@
 }
 else
 {
-
     <table class="table">
         <thead>
             <tr>
@@ -35,9 +34,8 @@ else
                     <td>@board.Price</td>
                     <td>
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@board.BoardName.Replace(' ', '_')">
-                            Details
+                            See info / Rent
                         </button>
-                        <a href="/rent/@board.BoardId" class="btn btn-primary">Rent</a>
                     </td>
                 </tr>
             }
@@ -64,9 +62,6 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-
-        Http = new HttpClient();
-
         var user = (await AuthenticationStateProvider.GetAuthenticationStateAsync()).User.Identity;
 
         if (user.IsAuthenticated)
