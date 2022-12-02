@@ -1,4 +1,5 @@
 ﻿@using SurfsUpLibrary.Models
+@inject HttpClient client
 @inject NavigationManager navigation
 
 <!-- Modal -->
@@ -36,10 +37,20 @@
                         </tr>
                     </tbody>
                 </table>
+
+                <EditForm Model="@rent" OnValidSubmit="@HandleSubmit" id="RentBoardForm">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="mb-3 mt-3">
+                        <label for="EndRent">Rent board to:</label>
+                        <InputDate Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="rent.EndRent"></InputDate>
+                    </div>
+                </EditForm>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal" @onclick="RedirectToRentPage">Rent</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" form="RentBoardForm">Rent</button>
             </div>
         </div>
     </div>
@@ -72,12 +83,21 @@
 
     [Parameter]
     public decimal Price { get; set; }
+
+    // RentDTO
+    RentDto rent = new();
 }
 
 @functions {
-    private void RedirectToRentPage() 
+    private async void HandleSubmit()
     {
-        navigation.NavigateTo($"/rent/{BoardId}");
+        client = new HttpClient();
+
+        client.BaseAddress = new Uri("https://localhost:7009");
+
+        rent.BoardId = BoardId;
+        await client.PostAsJsonAsync<RentDto>("api/v1/RentBoard", rent);
+        navigation.NavigateTo("/shop", true);
     }
 }
 

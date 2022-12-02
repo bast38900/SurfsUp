@@ -3,8 +3,11 @@
 @inject NavigationManager navigation
 
 <EditForm Model="@rent" OnValidSubmit="@HandleSubmit">
-    <div class="mb-3">
-        <InputDate Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="rent.EndRent"></InputDate>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="mb-3 mt-3">
+        <label for="EndRent">Rent board to:</label>
+        <InputDate id="EndRent" Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="rent.EndRent"></InputDate>
     </div>
     <button class="btn btn-primary" type="submit">Rent board</button>
 </EditForm>
