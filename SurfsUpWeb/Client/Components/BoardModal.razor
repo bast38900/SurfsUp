@@ -1,0 +1,103 @@
+﻿@using SurfsUpLibrary.Models
+@inject HttpClient client
+@inject NavigationManager navigation
+
+<!-- Modal -->
+<div class="modal fade" id="@BoardName.Replace(' ', '_')" aria-labelledby="Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="Label">@BoardName</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Type</th>
+                            <th scope="col">Length</th>
+                            <th scope="col">Width</th>
+                            <th scope="col">Thickness</th>
+                            <th scope="col">Volume</th>
+                            <th scope="col">Equipment</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>@BoardName</td>
+                            <td>@Type</td>
+                            <td>@Length</td>
+                            <td>@Width</td>
+                            <td>@Thickness</td>
+                            <td>@Volume</td>
+                            <td>@Equipment</td>
+                            <td>@Price</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <EditForm Model="@rent" OnValidSubmit="@HandleSubmit" id="RentBoardForm">
+                    <DataAnnotationsValidator />
+                    <ValidationSummary />
+                    <div class="mb-3 mt-3">
+                        <label for="EndRent">Rent board to:</label>
+                        <InputDate Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="rent.EndRent"></InputDate>
+                    </div>
+                </EditForm>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary" data-bs-dismiss="modal" form="RentBoardForm">Rent</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Guid BoardId { get; set; }
+
+    [Parameter]
+    public string BoardName { get; set; }
+
+    [Parameter]
+    public string Type { get; set; }
+
+    [Parameter]
+    public double Length { get; set; }
+
+    [Parameter]
+    public double Width { get; set; }
+
+    [Parameter]
+    public double Thickness { get; set; }
+
+    [Parameter]
+    public double Volume { get; set; }
+
+    [Parameter]
+    public string Equipment { get; set; }
+
+    [Parameter]
+    public decimal Price { get; set; }
+
+    // RentDTO
+    RentDto rent = new();
+}
+
+@functions {
+    private async void HandleSubmit()
+    {
+        client = new HttpClient();
+
+        client.BaseAddress = new Uri("https://localhost:7009");
+
+        rent.BoardId = BoardId;
+        await client.PostAsJsonAsync<RentDto>("api/v1/RentBoard", rent);
+        navigation.NavigateTo("/shop", true);
+    }
+}
+

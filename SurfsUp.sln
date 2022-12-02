@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpLibrary", "SurfsUpLi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeatherAPI", "WeatherAPI\WeatherAPI.csproj", "{AFB08046-0639-4B8C-A44E-9F35F76833C5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpBlazor", "SurfsUpBlazor\SurfsUpBlazor.csproj", "{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpWeb.Server", "SurfsUpWeb\Server\SurfsUpWeb.Server.csproj", "{E767CBE2-4C42-4E33-992B-644BDD316A03}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SurfsUpWeb.Client", "SurfsUpWeb\Client\SurfsUpWeb.Client.csproj", "{9F654CCD-9ECD-48F2-A062-8329B0D3CA7E}"
@@ -39,10 +37,6 @@ Global
 		{AFB08046-0639-4B8C-A44E-9F35F76833C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AFB08046-0639-4B8C-A44E-9F35F76833C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AFB08046-0639-4B8C-A44E-9F35F76833C5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1FB5A74-4B96-4B5D-B70B-87E0A90BDB3E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E767CBE2-4C42-4E33-992B-644BDD316A03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E767CBE2-4C42-4E33-992B-644BDD316A03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E767CBE2-4C42-4E33-992B-644BDD316A03}.Release|Any CPU.ActiveCfg = Release|Any CPU

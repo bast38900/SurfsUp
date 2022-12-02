@@ -2,7 +2,6 @@
 @using System.Net.Http.Json
 @using Syncfusion.Blazor.Inputs
 @using SurfsUpLibrary.Models
-@inject IModalService modal
 @inject HttpClient Http
 @inject AuthenticationStateProvider AuthenticationStateProvider
 
@@ -13,7 +12,6 @@
 }
 else
 {
-
     <table class="table">
         <thead>
             <tr>
@@ -35,18 +33,31 @@ else
                     <td>@board.Type</td>
                     <td>@board.Price</td>
                     <td>
-                        <button @onclick="@(()=>modal.Show<BoardsDetail>("Boards Detail"))" class="btn btn-primary">Details</button>
-                            <BlazoredModal Size="ModalSize.Automatic"></BlazoredModal>
-                        <a href="/rent/@board.BoardId" class="btn btn-primary">Rent</a>
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#@board.BoardName.Replace(' ', '_')">
+                            See info / Rent
+                        </button>
                     </td>
                 </tr>
-
             }
         </tbody>
     </table>
-}
 
+    @foreach (var board in boards) {
+        <BoardModal 
+            BoardId="@board.BoardId" 
+            BoardName="@board.BoardName" 
+            Type="@board.Type" 
+            Length="@board.Length"
+            Width="@board.Width"
+            Thickness="@board.Thickness"
+            Volume="@board.Volume"
+            Equipment="@board.Equipment"
+            Price="@board.Price"
+        ></BoardModal>
+    }
+}
 @code {
+
     private List<Board>? boards;
 
     protected override async Task OnInitializedAsync()
