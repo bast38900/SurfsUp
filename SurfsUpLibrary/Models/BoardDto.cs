@@ -2,16 +2,8 @@
 
 namespace SurfsUpLibrary.Models;
 
-public enum BoardState
+public class BoardDto
 {
-    Available,
-    Rented
-}
-
-public class Board
-{
-    public Guid BoardId { get; set; }
-
     [StringLength(255, MinimumLength = 1)]
     [Required]
     public string? BoardName { get; set; }
@@ -32,8 +24,6 @@ public class Board
     
     public double Volume { get; set; }
     
-    public BoardState State { get; set; } = BoardState.Available;
-
     private string? picture;
     public string? Picture
     {
@@ -47,7 +37,4 @@ public class Board
         get { return equipment; }
         set { equipment = value ?? ""; }
     }
-
-    [Timestamp]
-    public byte[]? RowVersion { get; set; }
 }

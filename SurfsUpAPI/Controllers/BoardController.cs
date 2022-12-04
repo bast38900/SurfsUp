@@ -22,7 +22,7 @@ namespace SurfsUpAPI.Controllers
         [MapToApiVersion("1.0")]
         [MapToApiVersion("2.0")]
         [Route("CreateBoard")]
-        public async Task<ActionResult<Board>> CreateBoard([Bind("BoardName,Picture,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<ActionResult<BoardDto>> CreateBoard([Bind("BoardName,Picture,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
         {
             if (ModelState.IsValid)
             {
