@@ -31,11 +31,12 @@
 @code {
     private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-    private string? userInput;
+    private string? userInput; 
     private string? messageInput;
 
     protected override async Task OnInitializedAsync()
     {
+        // userInput = context.User.Identity?.Name;
         hubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
             .Build();
