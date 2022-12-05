@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "SurfsUpLibrary": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:63971;http://localhost:63972"
+    }
+  }
+}
