@@ -22,13 +22,26 @@ namespace SurfsUpAPI.Controllers
         [MapToApiVersion("1.0")]
         [MapToApiVersion("2.0")]
         [Route("CreateBoard")]
-        public async Task<ActionResult<BoardDto>> CreateBoard([Bind("BoardName,Picture,Length,Width,Thickness,Volume,Type,Price,Equipment")] Board board)
+        public async Task<ActionResult<BoardDto>> CreateBoard([FromBody] BoardDto board)
         {
+            Board createdBoard = new Board()
+            {
+                BoardName = board.BoardName,
+                Price = board.Price,
+                Type = board.Type,
+                Length = board.Length,
+                Width = board.Width,
+                Thickness = board.Thickness,
+                Volume = board.Volume,
+                Picture = board.Picture,
+                Equipment = board.Equipment
+            };
+
             if (ModelState.IsValid)
             {
-                _appDbContext.Add(board);
+                _appDbContext.Add(createdBoard);
                 await _appDbContext.SaveChangesAsync();
-                return Ok(board);
+                return Ok(createdBoard);
             }
             return BadRequest();
         }

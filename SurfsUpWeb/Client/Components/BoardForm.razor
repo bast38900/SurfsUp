@@ -49,17 +49,17 @@
 </EditForm>
 
 @code {
-    private Board board = new();
+    private BoardDto board = new();
 }
 
 @functions {
-    protected override async Task OnInitializedAsync()
-    {
-        base.OnInitialized();
-    }
-
     private async Task HandleSubmit()
     {
+        client = new()
+        {
+            BaseAddress = new Uri("https://localhost:7009/")
+        };
+
         await client.PostAsJsonAsync("api/v2/CreateBoard", board);
         navigation.NavigateTo("/shop", true);
     }
