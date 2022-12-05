@@ -1,24 +1,26 @@
 ﻿@page "/ChatRoom"
 @using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
 @inject NavigationManager Navigation
 @implements IAsyncDisposable
 
 <PageTitle>Chat Room</PageTitle>
 
-<div class="form-group">
-    <label>
-        User:
-        <input @bind="userInput" />
-    </label>
-</div>
-<div class="form-group">
-    <label>
-        Message:
-        <input @bind="messageInput" size="50" />
-    </label>
-</div>
-<button @onclick="Send" disabled="@(!IsConnected)">Send</button>
-
+<AuthorizeView>
+    <Authorized>
+        @{
+            emailName = @context.User.Identity?.Name;
+        }
+        <div class="form-group">
+            <label>
+                Message:
+                <input @bind="messageInput" @onkeydown="@Enter" size="50" />
+            </label>
+        </div>
+        <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+    </Authorized>
+</AuthorizeView>
 <hr>
 
 <ul id="messagesList">
@@ -31,12 +33,11 @@
 @code {
     private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-    private string? userInput; 
+    private string? emailName;
     private string? messageInput;
 
     protected override async Task OnInitializedAsync()
     {
-        // userInput = context.User.Identity?.Name;
         hubConnection = new HubConnectionBuilder()
             .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
             .Build();
@@ -51,11 +52,13 @@
         await hubConnection.StartAsync();
     }
 
+    Task currentWork;
     private async Task Send()
     {
         if (hubConnection is not null)
         {
-            await hubConnection.SendAsync("SendMessage", userInput, messageInput);
+            await (currentWork = hubConnection.SendAsync("SendMessage", emailName, messageInput)).ConfigureAwait(false);
+            if(currentWork.IsCompleted) messageInput = string.Empty;
         }
     }
 
@@ -67,6 +70,14 @@
         if (hubConnection is not null)
         {
             await hubConnection.DisposeAsync();
+        }
+    }
+
+    private async Task Enter(KeyboardEventArgs e) // Press enter to send message.
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await ( currentWork = Send() );
         }
     }
 }
