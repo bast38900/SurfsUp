@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SurfsUpWeb.Server.Data;
 using SurfsUpWeb.Server.Models;
 using SurfsUpWeb.Server.Hubs;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 
