@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject HttpClient client
 @inject NavigationManager navigation
+@inject ISessionStorageService sessionStorage
 @attribute [Authorize]
 
 
@@ -11,7 +12,7 @@
     <ValidationSummary />
     <div class="mb-3 mt-3">
         <label for="BoardName">Name</label>
-        <InputText id="BoardName" class="form-control" @bind-Value="board.BoardName"></InputText>
+        <InputText id="BoardName" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.BoardName"></InputText>
     </div>
     <div class="mb-3 mt-3">
         <label for="Picture">Image</label>
@@ -63,4 +64,20 @@
         await client.PostAsJsonAsync("api/v2/CreateBoard", board);
         navigation.NavigateTo("/shop", true);
     }
+
+    private async void OnValueChanged()
+    {
+        await sessionStorage.SetItemAsync("newBoard", board);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var temp = await sessionStorage.GetItemAsync<BoardDto>("newBoard");
+        if (temp != null)
+        {
+            board = temp;
+            StateHasChanged();
+        }
+    }
+
 }
