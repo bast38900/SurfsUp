@@ -62,6 +62,7 @@
         };
 
         await client.PostAsJsonAsync("api/v2/CreateBoard", board);
+        await sessionStorage.RemoveItemAsync("newBoard");
         navigation.NavigateTo("/shop", true);
     }
 
