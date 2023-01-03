@@ -12,7 +12,7 @@ namespace SurfsUpMVC.Middleware
     {
         private readonly RequestDelegate _next;
         private Dictionary<IPAddress, List<DateTime>> _loggedRequest;
-        private int _rentLimit = 3;
+        private int _rentLimit = 3; //3 request for at oprette et rent
         private TimeSpan _limitedTime = new TimeSpan(0,3,0);
 
         public IpRateLimiter(RequestDelegate next)
@@ -25,7 +25,7 @@ namespace SurfsUpMVC.Middleware
         {
             string path = context.Request.Path;
 
-            if (path.StartsWith("/Rental/Rent/") /*&& context.Request.HasFormContentType*/)
+            if (path.StartsWith("/Rental/Rent/"))
             {
                 if (!context.User.Identity.IsAuthenticated)
                 {
@@ -56,13 +56,6 @@ namespace SurfsUpMVC.Middleware
 
         private void Block(HttpContext context)
         {
-            //ITempDataDictionaryFactory? factory = context.RequestServices.GetService(typeof(ITempDataDictionaryFactory)) as ITempDataDictionaryFactory;
-            //ITempDataDictionary tempData = factory.GetTempData(context);
-
-            //tempData["Message"] = "Registrer konto for at leje mere end 1 board.";
-
-            //context.Items.Add("RentMessage", "Registrer konto for at leje mere end 1 board");
-            //context.Response.Headers.Add("RentMessage", "Registrer konto for at leje mere end 1 board");
 
             string route = "/Rental/CantRentMore";
             
