@@ -38,6 +38,8 @@
     private string? messageInput;
     public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
+    // Test
+
     protected override async Task OnInitializedAsync()
     {
         hubConnection = new HubConnectionBuilder()
