@@ -57,7 +57,7 @@ namespace SurfsUp.Controllers
             // Search
             if (!string.IsNullOrEmpty(searchString))
             {
-                boards = boards.Where(s => s.BoardName!.Contains(searchString));
+                boards = boards.Where(s => s.BoardName!.ToUpper().Contains(searchString.ToUpper()));
             }
 
             if (searchString != null)

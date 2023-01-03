@@ -99,13 +99,7 @@ namespace SurfsUpAPI.Controllers
             try
             {
                 var boards = await _appDbContext.Board.ToListAsync();
-                //Board board1 = new Board();
-                //var existingboard = _appDbContext.Board.Find(1);
 
-                //if (Convert.ToBase64String(existingboard.RowVersion) != Convert.ToBase64String(board1.RowVersion))
-                //{
-                //    return StatusCode(409); // conflict
-                //}
                 Rent rent = new Rent();
 
                 foreach (var board in boards)
