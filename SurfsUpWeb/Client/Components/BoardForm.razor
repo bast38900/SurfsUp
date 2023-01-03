@@ -3,6 +3,7 @@
 @inject AuthenticationStateProvider AuthenticationStateProvider
 @inject HttpClient client
 @inject NavigationManager navigation
+@inject ISessionStorageService sessionStorage
 @attribute [Authorize]
 
 
@@ -11,39 +12,39 @@
     <ValidationSummary />
     <div class="mb-3 mt-3">
         <label for="BoardName">Name</label>
-        <InputText id="BoardName" class="form-control" @bind-Value="board.BoardName"></InputText>
+        <InputText id="BoardName" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.BoardName"></InputText>
     </div>
     <div class="mb-3 mt-3">
         <label for="Picture">Image</label>
-        <InputText id="Picture" class="form-control" @bind-Value="board.Picture"></InputText>
+        <InputText id="Picture" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Picture"></InputText>
     </div>
     <div class="mb-3 mt-3">
         <label for="Length">Length</label>
-        <InputNumber id="Length" class="form-control" @bind-Value="board.Length"></InputNumber>
+        <InputNumber id="Length" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Length"></InputNumber>
     </div>
     <div class="mb-3 mt-3">
         <label for="Width">Width</label>
-        <InputNumber id="Width" class="form-control" @bind-Value="board.Width"></InputNumber>
+        <InputNumber id="Width" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Width"></InputNumber>
     </div>
     <div class="mb-3 mt-3">
         <label for="Thickness">Thickness</label>
-        <InputNumber id="Thickness" class="form-control" @bind-Value="board.Thickness"></InputNumber>
+        <InputNumber id="Thickness" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Thickness"></InputNumber>
     </div>
     <div class="mb-3 mt-3">
         <label for="Volume">Volume</label>
-        <InputNumber id="Volume" class="form-control" @bind-Value="board.Volume"></InputNumber>
+        <InputNumber id="Volume" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Volume"></InputNumber>
     </div>
     <div class="mb-3 mt-3">
         <label for="Type">Type</label>
-        <InputText id="Type" class="form-control" @bind-Value="board.Type"></InputText>
+        <InputText id="Type" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Type"></InputText>
     </div>
     <div class="mb-3 mt-3">
         <label for="Price">Price</label>
-        <InputNumber id="Price" class="form-control" @bind-Value="board.Price"></InputNumber>
+        <InputNumber id="Price" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Price"></InputNumber>
     </div>
     <div class="mb-3 mt-3">
         <label for="Equipment">Equipment</label>
-        <InputText id="Equipment" class="form-control" @bind-Value="board.Equipment"></InputText>
+        <InputText id="Equipment" class="form-control" @onfocusout="OnValueChanged" @bind-Value="board.Equipment"></InputText>
     </div>
     <button class="btn btn-primary" type="submit">Submit</button>
 </EditForm>
@@ -61,6 +62,23 @@
         };
 
         await client.PostAsJsonAsync("api/v2/CreateBoard", board);
+        await sessionStorage.RemoveItemAsync("newBoard");
         navigation.NavigateTo("/shop", true);
     }
+
+    private async void OnValueChanged()
+    {
+        await sessionStorage.SetItemAsync("newBoard", board);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var temp = await sessionStorage.GetItemAsync<BoardDto>("newBoard");
+        if (temp != null)
+        {
+            board = temp;
+            StateHasChanged();
+        }
+    }
+
 }
