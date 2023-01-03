@@ -1,0 +1,82 @@
+﻿@page "/ChatRoom"
+@using Microsoft.AspNetCore.SignalR.Client
+@using Microsoft.AspNetCore.Components.Authorization
+@using Microsoft.AspNetCore.Components.WebAssembly.Authentication
+@inject NavigationManager Navigation
+@implements IAsyncDisposable
+
+<PageTitle>Chat Room</PageTitle>
+
+<AuthorizeView>
+    <Authorized>
+        @{
+            emailName = @context.User.Identity?.Name;
+        }
+        <div class="form-group">
+            <label>
+                Message:
+                <input @bind="messageInput" @bind:event="oninput" @onkeydown="Enter"/>
+            </label >
+        </div >
+        <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
+    </Authorized>
+</AuthorizeView>
+<hr>
+
+<ul id="messagesList" style="list-style-type: none;">
+    @foreach (var message in messages)
+    {
+        <li>@message</li>
+        <hr>
+    }
+</ul>
+
+@code {
+    private HubConnection? hubConnection;
+    private List<string> messages = new List<string>();
+    private string? emailName { get; set; }
+    private string? messageInput;
+    public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
+
+    protected override async Task OnInitializedAsync()
+    {
+        hubConnection = new HubConnectionBuilder()
+            .WithUrl(Navigation.ToAbsoluteUri("/chathub"))
+            .Build();
+
+        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+        {
+            user = user.Substring(0, user.IndexOf("@")); // Removes everything after the @ in Email
+            var encodedMsg = $"{user}: {message}";
+            messages.Add(encodedMsg);
+            InvokeAsync(StateHasChanged);
+        });
+
+        await hubConnection.StartAsync();
+    }
+
+    private async Task Send()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.SendAsync("SendMessage", emailName, messageInput);
+            messageInput = string.Empty;
+        }
+    }
+
+    private async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await Send();
+        }
+    }
+
+    public async ValueTask DisposeAsync()
+    {
+        if (hubConnection is not null)
+        {
+            await hubConnection.DisposeAsync();
+        }
+    }
+}

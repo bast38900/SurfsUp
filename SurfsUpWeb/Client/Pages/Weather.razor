@@ -1,0 +1,28 @@
+﻿@page "/Weather"
+@using SurfsUpWeb.Client.Components
+
+<h3>Weather</h3>
+
+
+@*<WeatherForDays></WeatherForDays>*@
+<button type="button" class="btn btn-danger btn-sm" @onclick="OpenWeatherForecastDialog">Weather Forecast</button>
+@if (WeatherForecastDialogOpen)
+{
+    <WeatherForecast OnClose="@OnWeatherForecastDialogClose"></WeatherForecast>
+}
+
+@code{
+    
+    public bool WeatherForecastDialogOpen { get; set; }
+
+    private void OnWeatherForecastDialogClose(bool accepted)
+    {
+        WeatherForecastDialogOpen = false;
+        StateHasChanged();
+    }
+    private void OpenWeatherForecastDialog()
+    {
+        WeatherForecastDialogOpen = true;
+        StateHasChanged();
+    }
+}

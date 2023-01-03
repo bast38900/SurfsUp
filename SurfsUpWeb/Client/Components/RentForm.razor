@@ -1,0 +1,28 @@
+﻿@using SurfsUpLibrary.Models
+@inject HttpClient client
+@inject NavigationManager navigation
+
+<EditForm Model="@rent" OnValidSubmit="@HandleSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <div class="mb-3 mt-3">
+        <label for="EndRent">Rent board to:</label>
+        <InputDate id="EndRent" Type="InputDateType.DateTimeLocal" class="form-control" @bind-Value="rent.EndRent"></InputDate>
+    </div>
+    <button class="btn btn-primary" type="submit">Rent board</button>
+</EditForm>
+
+@code {
+    [Parameter]
+    public string BoardId { get; set; }
+
+    RentDto rent = new();
+
+    private async void HandleSubmit()
+    {
+        rent.BoardId = Guid.Parse(BoardId);
+
+        await client.PostAsJsonAsync<RentDto>("api/v1/RentBoard", rent);
+        navigation.NavigateTo("/shop", true);
+    }
+}
