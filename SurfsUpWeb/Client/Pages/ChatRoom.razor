@@ -15,26 +15,28 @@
         <div class="form-group">
             <label>
                 Message:
-                <input @bind="messageInput" @onkeydown="@Enter" size="50" />
-            </label>
-        </div>
+                <input @bind="messageInput" @bind:event="oninput" @onkeydown="Enter"/>
+            </label >
+        </div >
         <button @onclick="Send" disabled="@(!IsConnected)">Send</button>
     </Authorized>
 </AuthorizeView>
 <hr>
 
-<ul id="messagesList">
+<ul id="messagesList" style="list-style-type: none;">
     @foreach (var message in messages)
     {
         <li>@message</li>
+        <hr>
     }
 </ul>
 
 @code {
     private HubConnection? hubConnection;
     private List<string> messages = new List<string>();
-    private string? emailName;
+    private string? emailName { get; set; }
     private string? messageInput;
+    public bool IsConnected => hubConnection?.State == HubConnectionState.Connected;
 
     protected override async Task OnInitializedAsync()
     {
@@ -44,6 +46,7 @@
 
         hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
         {
+            user = user.Substring(0, user.IndexOf("@")); // Removes everything after the @ in Email
             var encodedMsg = $"{user}: {message}";
             messages.Add(encodedMsg);
             InvokeAsync(StateHasChanged);
@@ -52,32 +55,28 @@
         await hubConnection.StartAsync();
     }
 
-    Task currentWork;
     private async Task Send()
     {
         if (hubConnection is not null)
         {
-            await (currentWork = hubConnection.SendAsync("SendMessage", emailName, messageInput)).ConfigureAwait(false);
-            if(currentWork.IsCompleted) messageInput = string.Empty;
+            await hubConnection.SendAsync("SendMessage", emailName, messageInput);
+            messageInput = string.Empty;
         }
     }
 
-    public bool IsConnected =>
-        hubConnection?.State == HubConnectionState.Connected;
+    private async Task Enter(KeyboardEventArgs e)
+    {
+        if (e.Code == "Enter" || e.Code == "NumpadEnter")
+        {
+            await Send();
+        }
+    }
 
     public async ValueTask DisposeAsync()
     {
         if (hubConnection is not null)
         {
             await hubConnection.DisposeAsync();
-        }
-    }
-
-    private async Task Enter(KeyboardEventArgs e) // Press enter to send message.
-    {
-        if (e.Code == "Enter" || e.Code == "NumpadEnter")
-        {
-            await ( currentWork = Send() );
         }
     }
 }
