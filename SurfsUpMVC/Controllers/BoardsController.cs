@@ -63,12 +63,7 @@ namespace SurfsUp.Controllers
             };
 
             return View(boardTypeVM);
-
-            //return View(await boards.ToListAsync());
-
-            //    return _context.Board != null ? 
-            //                 View(await _context.Board.ToListAsync());
-            //                 Problem("Entity set 'SurfsUpContext.Board'  is null.");
+               Problem("Entity set 'SurfsUpContext.Board'  is null.");
         }
 
         // GET: Boards/Details/5

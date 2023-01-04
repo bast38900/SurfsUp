@@ -16,7 +16,7 @@
         @*Create table headlines*@
         <tr>
             <th>ID</th>
-            <th>Username</th>
+            <th>@Html.ActionLink("Username", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
             <th>Email</th>
             <th>Actions</th>
         </tr>

@@ -27,9 +27,23 @@ namespace Identity.Controllers
         }
 
         // Get all users from identity DB, via Users Property (IEnumerable object)
-        public IActionResult Index()
+        public IActionResult Index(string sortOrder)
         {
-            return View(userManager.Users);
+            ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "Name_desc" : "";
+
+            var users = from u in userManager.Users
+                       select u;
+
+            switch(sortOrder)
+            {
+                case "Name_desc":
+                    users = users.OrderByDescending(u => u.UserName);
+                    break;
+
+            }
+
+            //return View(userManager.Users);
+            return View(users.ToList());
         }
 
         #region CREATE 
