@@ -6,9 +6,9 @@ using SurfsUp.Models;
 using SurfsUpMVC.Middleware;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddDbContext<SurfsUpContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SurfsUpContext") ?? throw new InvalidOperationException("Connection string 'SurfsUpContext' not found.")));
-
 
 // Make Program.cs use the right connectionstring for identity db on startup
 

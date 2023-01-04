@@ -60,6 +60,8 @@ namespace SurfsUp.Controllers
                 boards = boards.Where(s => s.BoardName!.ToUpper().Contains(searchString.ToUpper()));
             }
 
+            
+            // Paging
             if (searchString != null)
             {
                 pageNumber = 1;
